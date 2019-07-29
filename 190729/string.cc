@@ -28,6 +28,7 @@ public:
     friend bool operator>=(const String &, const String &);
     friend std::ostream &operator<<(std::ostream &os, const String &s);
     friend std::istream &operator>>(std::istream &is, String &s);
+
 private:
     char *_pstr;
 
@@ -72,13 +73,8 @@ String &String::operator=(const char *str)
 {
     if (strlen(str) != 0)
     {
-        if(_pstr)
-        {
-            free(_pstr);
-            _pstr = new char[strlen(str) + 1]();
-        }
-        else
-            _pstr = new char[strlen(str) + 1]();
+        delete[] _pstr;
+        _pstr = new char[strlen(str) + 1]();
         for (int i = 0; i < strlen(str); ++i)
         {
             _pstr[i] = str[i];
@@ -94,7 +90,7 @@ std::size_t String::size() const
 
 String &String::operator+=(const String &rhs)
 {
-    if (rhs._pstr)
+    if (rhs._pstr && _pstr)
     {
         int totalSize = strlen(_pstr) + rhs.size() - 1;
         String temp = *this;
@@ -103,6 +99,11 @@ String &String::operator+=(const String &rhs)
         strcat(_pstr, temp._pstr);
         strcat(_pstr, rhs._pstr);
         temp.~String();
+    }
+    else if(_pstr == nullptr)
+    {
+        _pstr = new char[rhs.size() + 1];
+        *this = rhs;
     }
     return *this;
 }
@@ -122,7 +123,7 @@ String &String::operator+=(const char *str)
     else if(_pstr==nullptr)
     {
         _pstr = new char[strlen(str) + 1];
-        strcat(_pstr, str);
+        strcpy(_pstr, str);
     }
     return *this;
 }
@@ -211,15 +212,44 @@ String::~String()
         delete[] _pstr;
         _pstr = NULL;
     }
-    cout << "~String()" << endl;
+}
+
+String operator+(const String &lhs, const String &rhs)
+{
+    String res;
+    res += lhs;
+    res += rhs;
+    return res;
+}
+String operator+(const String &lhs, const char *rhs)
+{
+    String res;
+    res += lhs;
+    res += rhs;
+    return res;
+
+}
+String operator+(const char *lhs, const String &rhs)
+{
+    String res;
+    res += lhs;
+    res += rhs;
+    return res;
 }
 
 
 int main(int argc, char **argv)
 {
     String str1;
+    String str2;
+    String str3;
     std::cin >> str1;
-    cout << str1 << endl;    
+    std::cin.ignore(1024, '\n');
+    std::cin >> str2;
+    str3 = str1 + str2;
+    cout << str3 << endl;
+    cout << str3 + "hello" << endl;
+    cout << "hello" + str3 << endl;
 
     return 0;
 }
