@@ -9,29 +9,29 @@
 
 首先，要说的是Apollo 11导航的源代码，这些代码的设计负责人叫Margaret Heafield Hamilton ，是一个女程序员，专业是数学和哲学，1960年得到一个MIT麻省理工大学的临时的软件开发职位，负责在PDP-1和LGP-30上运行天气预报的软件（注：在计算机历史上，PDP系统机器被称为Hack文化的重要推手，PDP-11推了Unix操作系统，而Unix操作系统则是黑客文化的重要产品。参看《Unix传奇》）。然后，她又为美国空军编写探测知敌方飞行的软件，之后，于1965年的时候，她加入了MIT仪器实验室，并成为了这个实验室的主管，这个实验实就是Apollo计划的一部分，她负责编写全新的月球登录的导航软件，以及后来该软件在其他项目中的各个版本。
 
-上图是Hamilton站在她和她的麻省理工团队为阿波罗项目制作的导航软件源代码旁边，在Github上的开源的代码 &amp;#8211; Apollo-11 （2016年开源）。我们可以看到，有两个重要的目录，一个目录叫“Comanche055”，一个目录叫“Luminary099”，前者是指挥舱用的（英文为 Command Module ）后者为登月舱用的（英文为 Lunar Module），这里需要说明一下的是，指挥舱是把登录舱推到月球上，在返回的时候，登录舱是被抛弃掉的，而返回到地球的是指挥舱。如果你想看这两份源代码的纸版，你可以访问这两个链接：Comanche 55 AGC Program Listing 和 Luminary 99 REv.1 AGC Program Listing。其中的55 和 90 是各自的build 版本号。
+上图是Hamilton站在她和她的麻省理工团队为阿波罗项目制作的导航软件源代码旁边，在Github上的开源的代码  Apollo-11 （2016年开源）。我们可以看到，有两个重要的目录，一个目录叫“Comanche055”，一个目录叫“Luminary099”，前者是指挥舱用的（英文为 Command Module ）后者为登月舱用的（英文为 Lunar Module），这里需要说明一下的是，指挥舱是把登录舱推到月球上，在返回的时候，登录舱是被抛弃掉的，而返回到地球的是指挥舱。如果你想看这两份源代码的纸版，你可以访问这两个链接：Comanche 55 AGC Program Listing 和 Luminary 99 REv.1 AGC Program Listing。其中的55 和 90 是各自的build 版本号。
 我们细看一下，这些文件的日期是，1969年7月14日，而Apollo 11登月的日期是1969年7月16日起程，7月19日经过月球背面，7月20日下午8点登月。代码写好，两天后就直接上生产，然后就登月，还是导航代码，这代码写的的健壮性得有多强。
 如果你仔细比较一下这两个目录中的文件，你会发现有些文件是一样的，不但文件名一样，而且内容也一样。这说明这两个模块中的一些东西是相似的。
 
-这些代码应该是很难读了，因为当时写这些代码的时候，C语言都没有被发明，所以基本上来说都是汇编代码了，而且还可以发现，这些代码的源文件全是以agc后缀结尾的， 看来这还不是我们平时所了解的汇编，所谓的AGC代表了运行这些代码的计算机 &amp;#8211; Apollo Guideance Computer 。沿着这个Wikipedia的链接，你可以看到AGC这个电脑的指令是什么样的，看懂那几条指令后，这些源代码也就能读懂了。当然，因为是写成汇编的，所以，读起来还是要费点神的。不过，其中有一个文件是 LUNAR_LANDING_GUIDANCE_EQUATIONS.agc 你会不会很好奇想去看看？
-打开源文件，你还可以看到每个文件都有很多很多的注释，非常友好，但是也有一些注释比较有趣。这里有一组短视频带你读这些代码 &amp;#8211; Exploring the Apollo Guidance Computer(AGC) Code，一供10个小视频，每个2分钟左右，如果你英文听边还行（我觉得很容易听懂），可以看看，了解一下AGC的工作方式，挺有趣意思的。
+这些代码应该是很难读了，因为当时写这些代码的时候，C语言都没有被发明，所以基本上来说都是汇编代码了，而且还可以发现，这些代码的源文件全是以agc后缀结尾的， 看来这还不是我们平时所了解的汇编，所谓的AGC代表了运行这些代码的计算机  Apollo Guideance Computer 。沿着这个Wikipedia的链接，你可以看到AGC这个电脑的指令是什么样的，看懂那几条指令后，这些源代码也就能读懂了。当然，因为是写成汇编的，所以，读起来还是要费点神的。不过，其中有一个文件是 LUNAR_LANDING_GUIDANCE_EQUATIONS.agc 你会不会很好奇想去看看？
+打开源文件，你还可以看到每个文件都有很多很多的注释，非常友好，但是也有一些注释比较有趣。这里有一组短视频带你读这些代码  Exploring the Apollo Guidance Computer(AGC) Code，一供10个小视频，每个2分钟左右，如果你英文听边还行（我觉得很容易听懂），可以看看，了解一下AGC的工作方式，挺有趣意思的。
 当时的AGC有32公斤，主频只有2MHz，2K的RAM，36K的ROM。嗯，当年就是这么一个小玩意，把人送上了月球，今天，一个聊天程序就占内存几GB……
 下面是AGC在Apollo 1指挥舱里的样子（图片截自上面的视频），这个高质量的3D扫描来自 Simithsonian 3D: Apollo 11 Command Module （我觉得美国人干这些事干就是很漂亮啊，这种高清的3D扫描太牛了，如果你仔细看，这个舱里还有宇航员在舱壁上的手写）
 
-这个AGC的操作界面又叫DSKY &amp;#8211; Display 和 Keyboard的缩写，下图是一个 AGC 模拟器，其官方主页在 https://www.ibiblio.org/apollo/源代码在 Github/VirtualAGC。在这个界面上我们可以看到：下面的键盘上左边有两个键，一个是动词Verb一个是名词Noun，Verb指定操作类型，Noun指定要由Verb命令修改的数据。右边的显示器下面有三个5位的数字，这三个数值显示表示航天器姿态的矢量，以及所需速度变化的显示矢量。是的，当年的导航就靠这三个数字和里面的程序了。
+这个AGC的操作界面又叫DSKY  Display 和 Keyboard的缩写，下图是一个 AGC 模拟器，其官方主页在 https://www.ibiblio.org/apollo/源代码在 Github/VirtualAGC。在这个界面上我们可以看到：下面的键盘上左边有两个键，一个是动词Verb一个是名词Noun，Verb指定操作类型，Noun指定要由Verb命令修改的数据。右边的显示器下面有三个5位的数字，这三个数值显示表示航天器姿态的矢量，以及所需速度变化的显示矢量。是的，当年的导航就靠这三个数字和里面的程序了。
 
-&amp;nbsp;
+
 如果你想了解AGC更多的细节，你可以看看 这篇 AGC for Dummies。这篇文章讲述了AGC这个嵌入式系统的背景和操作指令。一份详细的AGC 汇编语言手册可以让你了解更多的细节。
-另外，我在Youtube上找到了一个讲当时Apollo电脑的纪录片 &amp;#8211; Navigation Computer，太有趣了。比如：21分51秒开始讲存储用的 Rope Memory 绕线内存，Hamilton 也出来讲了一下在这种内存上编程，画面切到一个人用个比较长的金属针在一个像主板一样的东西上，左右穿梭，就像刺绣一样，但是绣的不是图案，而是程序……太硬核了，真正的通过“硬编织”的方式来写程序。
+另外，我在Youtube上找到了一个讲当时Apollo电脑的纪录片  Navigation Computer，太有趣了。比如：21分51秒开始讲存储用的 Rope Memory 绕线内存，Hamilton 也出来讲了一下在这种内存上编程，画面切到一个人用个比较长的金属针在一个像主板一样的东西上，左右穿梭，就像刺绣一样，但是绣的不是图案，而是程序……太硬核了，真正的通过“硬编织”的方式来写程序。
 
 看完上面这个纪录篇，我是非常之惊叹，惊叹于50年前的工程能力，惊叹于50年前这些人面对技术的的一丝不苟，对技术的尊重和严谨的这种精神和方法，一点都不比较今天差。
-不过，最牛的还不是这个，我在Hamilton的Wikipedia词条上找到了他说的一个事件—— 当年Apollo登陆雷达开关放在了错误的位置，导致AGC收到了不少错误的信号。结果就是AGC既得执行着陆必须的计算，又要接受这些占用其15%时间的额外数据。但是AGC的程序居然可以用高优先级的任务打断低优先级的任务，于是，AGC自动剔除了低级别的任务以保证了重要的任务完成。Hamilton 原话说—— 如果当时的程序不能识别错误并从错误中恢复，我怀疑阿波罗不能成功登月。if the computer hadn&amp;#8217;t recognized this problem and taken recovery action, I doubt if Apollo 11 would have been the successful moon landing it was。
+不过，最牛的还不是这个，我在Hamilton的Wikipedia词条上找到了他说的一个事件—— 当年Apollo登陆雷达开关放在了错误的位置，导致AGC收到了不少错误的信号。结果就是AGC既得执行着陆必须的计算，又要接受这些占用其15%时间的额外数据。但是AGC的程序居然可以用高优先级的任务打断低优先级的任务，于是，AGC自动剔除了低级别的任务以保证了重要的任务完成。Hamilton 原话说—— 如果当时的程序不能识别错误并从错误中恢复，我怀疑阿波罗不能成功登月。if the computer hadnt recognized this problem and taken recovery action, I doubt if Apollo 11 would have been the successful moon landing it was。
 看到这里，你有没有觉得——“这个女程序员的一小步，是整个人类的一大步”？
 Hamilton 的牛逼之外还在于，她是第一个将“软件工程”提出来的人，在MIT，她想让软件开发就像其它工程一样，有相应的工程纪律，给于相关的尊重，于是她创造了Software Engineering这个词。2018年，IEEE在纪念软件工程50周年的时候，他们把 Hamilton 请过去讲了一个叫 What the Errors Tell Us 的主题。她绝对可以称得上是程序员的Pioneer。
 三年前，Apollo的源代码被开源时候，Twitter有个叫 Lin Clark 的人发了一条推：“我妈50年前的代码被放到Github上了”，虽然，她不是 Hamilton 的女儿，但她妈妈也是Apolload其中一个程序员，现在Lin Clark同样也是一个程序员，目前在 Mozilla工作，Staff Engineer，专长 WebAssembly, Rust, 和 JavaScript ，也是个非常厉害的程序，Youtube上各种演讲，也是一个跟他妈妈一样牛的人。
 当她在Twitter上这么自豪地发了一条这样的推后，我不知道各位有什么想法？想不想你的后代在未来也会这样自豪的发条微博？
 
-&amp;nbsp;
+
 最后，尤其是想对那些到Apollo源代码的issue里发spam垃圾信息的人说一下，你看看人家，再看看你们自己，你们是不是想让你们的孩子在登月100周年纪念的时候说——50年前我爹那个傻叉在Apollo的github的issue列表时写了些垃圾，还以为自己多机灵？！
 （全文完）
 
@@ -47,7 +47,7 @@ Hamilton 的牛逼之外还在于，她是第一个将“软件工程”提出�
  --&gt;
  关注CoolShell微信公众账号和微信小程序
 
-（转载本站文章请注明作者和出处 酷 壳 &amp;#8211; CoolShell ，请勿用于任何商业用途）
+（转载本站文章请注明作者和出处 酷 壳  CoolShell ，请勿用于任何商业用途）
 ——=== 访问 酷壳404页面 寻找遗失儿童。 ===——
 
 相关文章Leetcode 编程训练开发团队的效率如何用最有创造力的方式输出42可视化编程从Gitlab误删除数据库想到的Python修饰器的函数式编程
@@ -104,10 +104,10 @@ P.S. 这篇文章借鉴于《如何写出无法维护的代码》一文的风格
 在认知、知识和技能上。这是一个人赖以立足社会的能力（参看《程序员的荒谬之言还是至理名言？》和《21天教你学会C++》）
 在领导力上。所谓领导力就是你跑在别人前面，你得要有比别人更好的能力更高的标准（参看《技术人员发展之路》）
 
-首先，我们要明白，人的技能是从认识开始，然后通过学校、培训或是书本把“零碎的认知”转换成“系统的知识”，而有要把知识转换成技能，就需要训练和实践，这样才能完成从：认识 -&amp;gt; 知识 -&amp;gt; 技能 的转换。这个转换过程是需要耗费很多时间和精力的，而且其中还需要有强大的学习能力和动手能力，这条路径上有很多的“关卡”，每道关卡都会过滤掉一大部分人。比如：对于一些比较枯燥的硬核知识来说，90%的人基本上就倒下来，不是因为他们没有智商，而是他们没有耐心。
+首先，我们要明白，人的技能是从认识开始，然后通过学校、培训或是书本把“零碎的认知”转换成“系统的知识”，而有要把知识转换成技能，就需要训练和实践，这样才能完成从：认识 - 技能 的转换。这个转换过程是需要耗费很多时间和精力的，而且其中还需要有强大的学习能力和动手能力，这条路径上有很多的“关卡”，每道关卡都会过滤掉一大部分人。比如：对于一些比较枯燥的硬核知识来说，90%的人基本上就倒下来，不是因为他们没有智商，而是他们没有耐心。
 认知
 要在认知上超过别人，就要在下面几个方面上做足功夫：
-1）信息渠道。试想如果别人的信息源没有你的好，那么，这些看不见信息源的人，只能接触得到二手信息甚至三手信息，只能获得被别人解读过的信息，这些信息被三传两递后必定会有错误和失真，甚至会被传递信息的中间人hack其中的信息（也就是“中间人攻击”），而这些找不出信息源的人，只能“被人喂养”，于是，他们最终会被困在信息的底层，永世不得翻身。（比如：学习C语言，放着原作者K&amp;amp;R的不用，硬要用错误百出谭浩强的书，能有什么好呢？）
+1）信息渠道。试想如果别人的信息源没有你的好，那么，这些看不见信息源的人，只能接触得到二手信息甚至三手信息，只能获得被别人解读过的信息，这些信息被三传两递后必定会有错误和失真，甚至会被传递信息的中间人hack其中的信息（也就是“中间人攻击”），而这些找不出信息源的人，只能“被人喂养”，于是，他们最终会被困在信息的底层，永世不得翻身。（比如：学习C语言，放着原作者KR的不用，硬要用错误百出谭浩强的书，能有什么好呢？）
 2）信息质量。信息质量主要表现在两个方面，一个是信息中的燥音，另一个是信息中的质量等级，我们都知道，在大数据处理中有一句名言，叫 garbage in garbage out，你天天看的都是垃圾，你的思想和认识也只有垃圾。所以，如果你的信息质量并不好的话，你的认知也不会好，而且你还要花大量的时间来进行有价值信息的挖掘和处理。
 3）信息密度。优质的信息，密度一般都很大，因为这种信息会逼着你去干这么几件事，a）搜索并学习其关联的知识，b）沉思和反省，c）亲手去推理、验证和实践……一般来说，经验性的文章会比知识性的文章会更有这样的功效。比如，类似于像 Effiective C++/Java，设计模式，Unix编程艺术，算法导论等等这样的书就是属于这种密度很大的书，而像Netflix的官方blog和AWS CTO的blog等等地方也会经常有一些这样的文章。
 知识
@@ -134,10 +134,10 @@ P.S. 这篇文章借鉴于《如何写出无法维护的代码》一文的风格
  --&gt;
  关注CoolShell微信公众账号和微信小程序
 
-（转载本站文章请注明作者和出处 酷 壳 &amp;#8211; CoolShell ，请勿用于任何商业用途）
+（转载本站文章请注明作者和出处 酷 壳  CoolShell ，请勿用于任何商业用途）
 ——=== 访问 酷壳404页面 寻找遗失儿童。 ===——
 
-相关文章技术人员的发展之路什么是工程师文化？这多年来我一直在钻研的技术关于高可用的系统「我只是认真」聊聊工匠情怀互联网之子 &amp;#8211; Aaron Swartz
+相关文章技术人员的发展之路什么是工程师文化？这多年来我一直在钻研的技术关于高可用的系统「我只是认真」聊聊工匠情怀互联网之子  Aaron Swartz
 </content>
     </doc>
     <doc>
@@ -152,9 +152,9 @@ P.S. 这篇文章借鉴于《如何写出无法维护的代码》一文的风格
 HTTP Basic
 Digest Access
 App Secret Key + HMAC
-JWT &amp;#8211; JSON Web Tokens
-OAuth 1.0 &amp;#8211; 3 legged &amp;amp; 2 legged
-OAuth 2.0 &amp;#8211; Authentication Code &amp;amp; Client Credential
+JWT  JSON Web Tokens
+OAuth 1.0  2 legged
+OAuth 2.0  Client Credential
 
 
 HTTP Basic
@@ -170,7 +170,7 @@ HTTP Basic 是一个非常传统的API认证技术，也是一个比较简单的
 但我们还是要知道，这种把用户名和密码同时放在公网上传输的方式有点不太好，因为Base64不是加密协议，而是编码协议，所以就算是有HTTPS作为安全保护，给人的感觉还是不放心。
 Digest Access
 中文称“HTTP 摘要认证”，最初被定义在了 RFC 2069 文档中（后来被 RFC 2617 引入了一系列安全增强的选项；“保护质量”(qop)、随机数计数器由客户端增加、以及客户生成的随机数）。
-其基本思路是，请求方把用户名口令和域做一个MD5 &amp;#8211;  MD5(username:realm:password) 然后传给服务器，这样就不会在网上传用户名和口令了，但是，因为用户名和口令基本不会变，所以，这个MD5的字符串也是比较固定的，因此，这个认证过程在其中加入了两个事，一个是 nonce 另一个是 qop
+其基本思路是，请求方把用户名口令和域做一个MD5   MD5(username:realm:password) 然后传给服务器，这样就不会在网上传用户名和口令了，但是，因为用户名和口令基本不会变，所以，这个MD5的字符串也是比较固定的，因此，这个认证过程在其中加入了两个事，一个是 nonce 另一个是 qop
 
 首先，调用方发起一个普通的HTTP请求。比如：GET /coolshell/admin/ HTTP/1.1
 服务端自然不能认证能过，服务端返回401错误，并且在HTTP头里的 WWW-Authenticate 包含如下信息：
@@ -181,7 +181,7 @@ Digest Access
                         opaque="5ccc069c403ebaf9f0171e9517f40e41"
 
 其中的 nonce 为服务器端生成的随机数，然后，客户端做 HASH1=MD5(MD5(username:realm:password):nonce:cnonce) ，其中的 cnonce 为客户端生成的随机数，这样就可以使得整个MD5的结果是不一样的。
-如果 qop 中包含了 auth ，那么还得做  HASH2=MD5(method:digestURI) 其中的 method 就是HTTP的请求方法（GET/POST&amp;#8230;），digestURI 是请求的URL。
+如果 qop 中包含了 auth ，那么还得做  HASH2=MD5(method:digestURI) 其中的 method 就是HTTP的请求方法（GET/POST），digestURI 是请求的URL。
 如果 qop 中包含了 auth-init ，那么，得做  HASH2=MD5(method:digestURI:MD5(entityBody)) 其中的 entityBody 就是HTTP请求的整个数据体。
 然后，得到 response = MD5(HASH1:nonce:nonceCount:cnonce:qop:HASH2) 如果没有 qop则 response = MD5(HA1:nonce:HA2)
 最后，我们的客户端对服务端发起如下请求—— 注意HTTP头的 Authorization: Digest ...
@@ -200,10 +200,10 @@ Authorization: Digest username="Mufasa",
 维基百科上的 Wikipedia: Digest access authentication 词条非常详细地描述了这个细节。
 摘要认证这个方式会比之前的方式要好一些，因为没有在网上传递用户的密码，而只是把密码的MD5传送过去，相对会比较安全，而且，其并不需要是否TLS/SSL的安全链接。但是，别看这个算法这么复杂，最后你可以发现，整个过程其实关键是用户的password，这个password如果不够得杂，其实是可以被暴力破解的，而且，整个过程是非常容易受到中间人攻击——比如一个中间人告诉客户端需要的 Basic 的认证方式 或是 老旧签名认证方式（RFC2069）。
 App Secret Key + HMAC
-先说HMAC技术，这个东西来自于MAC &amp;#8211; Message Authentication Code，是一种用于给消息签名的技术，也就是说，我们怕消息在传递的过程中被人修改，所以，我们需要用对消息进行一个MAC算法，得到一个摘要字串，然后，接收方得到消息后，进行同样的计算，然后比较这个MAC字符串，如果一致，则表明没有被修改过（整个过程参看下图）。而HMAC &amp;#8211; Hash-based Authenticsation Code，指的是利用Hash技术完成这一工作，比如：SHA-256算法。
-&amp;nbsp;
+先说HMAC技术，这个东西来自于MAC  Hash-based Authenticsation Code，指的是利用Hash技术完成这一工作，比如：SHA-256算法。
 
-（图片来自 Wikipedia &amp;#8211; MAC 词条 ）
+
+（图片来自 Wikipedia  MAC 词条 ）
 我们再来说App ID，这个东西跟验证没有关系，只是用来区分，是谁来调用API的，就像我们每个人的身份证一样，只是用来标注不同的人，不是用来做身份认证的。与前面的不同之处是，这里，我们需要用App ID 来映射一个用于加密的密钥，这样一来，我们就可以在服务器端进行相关的管理，我们可以生成若干个密钥对（AppID, AppSecret），并可以有更细粒度的操作权限管理。
 把AppID和HMAC用于API认证，目前来说，玩得最好最专业的应该是AWS了，我们可以通过S3的API请求签名文档看到AWS是怎么玩的。整个过程还是非常复杂的，可以通过下面的图片流程看个大概。基本上来说，分成如下几个步骤：
 
@@ -213,17 +213,17 @@ App Secret Key + HMAC
 用第三步的 SigningKey来对第二步的 StringToSign 签名。
 
 
-&amp;nbsp;
+
 最后，发出HTTP Request时，在HTTP头的 Authorization字段中放入如下的信息：
 Authorization: AWS4-HMAC-SHA256 
                Credential=AKIDEXAMPLE/20150830/us-east-1/iam/aws4_request, 
                SignedHeaders=content-type;host;x-amz-date, 
                Signature=5d672d79c15b13162d9279b0855cfba6789a8edb4c82c400e06b5924a6f2b5d7
 
-&amp;nbsp;
+
 其中的  AKIDEXAMPLE 是 AWS Access Key ID， 也就是所谓的 AppID，服务器端会根据这个AppID来查相关的 Secret Access Key，然后再验证签名。如果，你对这个过程有点没看懂的话，你可以读一读这篇文章——《Amazon S3 Rest API with curl》这篇文章里有好些代码，代码应该是最有细节也是最准确的了。
 这种认证的方式好处在于，AppID和AppSecretKey，是由服务器的系统开出的，所以，是可以被管理的，AWS的IAM就是相关的管理，其管理了用户、权限和其对应的AppID和AppSecretKey。但是不好的地方在于，这个东西没有标准 ，所以，各家的实现很不一致。比如： Acquia 的 HMAC，微信的签名算法 （这里，我们需要说明一下，微信的API没有遵循HTTP协议的标准，把认证信息放在HTTP 头的 Authorization 里，而是放在body里）
-JWT &amp;#8211; JSON Web Tokens
+JWT  JSON Web Tokens
 JWT是一个比较标准的认证解决方案，这个技术在Java圈里应该用的是非常普遍的。JWT签名也是一种MAC（Message Authentication Code）的方法。JWT的签名流程一般是下面这个样子：
 
 用户使用用户名和口令到认证服务器上请求认证。
@@ -290,7 +290,7 @@ Consumer 收到 Request Token 后，直接换取 Access Token （oauth_token）�
 最后，再来说一说OAuth中的签名。
 
 我们可以看到，有两个密钥，一个是Consumer注册Service Provider时由Provider颁发的 Consumer Secret，另一个是 Token Secret。
-签名密钥就是由这两具密钥拼接而成的，其中用 &amp;amp;作连接符。假设 Consumer Secret 为 j49sk3j29djd 而 Token Secret 为dh893hdasih9那个，签名密钥为：j49sk3j29djd&amp;amp;dh893hdasih9
+签名密钥就是由这两具密钥拼接而成的，其中用 dh893hdasih9
 在请求Request/Access Token的时候需要对整个HTTP请求进行签名（使用HMAC-SHA1和HMAC-RSA1签名算法），请求头中需要包括一些OAuth需要的字段，如：
 
 Consumer Key ： 也就是所谓的AppID
@@ -317,15 +317,15 @@ OAuth 2.0依赖于TLS/SSL的链路加密技术（HTTPS），完全放弃了签�
 Authorization Code Flow
 Authorization Code 是最常使用的OAuth 2.0的授权许可类型，它适用于用户给第三方应用授权访问自己信息的场景。这个Flow也是OAuth 2.0四个Flow中我个人觉得最完整的一个Flow，其流程图如下所示。
 
-&amp;nbsp;
+
 下面是对这个流程的一个细节上的解释：
 1）当用户（Resource Owner）访问第三方应用（Client）的时候，第三方应用会把用户带到认证服务器（Authorization Server）上去，主要请求的是 /authorize API，其中的请求方式如下所示。
 https://login.authorization-server.com/authorize?
         client_id=6731de76-14a6-49ae-97bc-6eba6914391e
-        &amp;amp;response_type=code
-        &amp;amp;redirect_uri=http%3A%2F%2Fexample-client.com%2Fcallback%2F
-        &amp;amp;scope=read
-        &amp;amp;state=xcoiv98CoolShell3kch
+        response_type=code
+        redirect_uri=http%3A%2F%2Fexample-client.com%2Fcallback%2F
+        scope=read
+        state=xcoiv98CoolShell3kch
 其中：
 
 
@@ -342,7 +342,7 @@ state 是一个随机的字符串，主要用于防CSRF攻击。
 3）当用户授权同意访问以后，Authorization Server 会跳转回 Client ，并以其中加入一个 Authorization Code。 如下所示：
 https://example-client.com/callback?
         code=Yzk5ZDczMzRlNDEwYlrEqdFSBzjqfTG
-        &amp;amp;state=xcoiv98CoolShell3kch
+        state=xcoiv98CoolShell3kch
 我们可以看到，
 
 
@@ -357,10 +357,10 @@ POST /oauth/token HTTP/1.1
 Host: authorization-server.com
  
 code=Yzk5ZDczMzRlNDEwYlrEqdFSBzjqfTG
-&amp;amp;grant_type=code
-&amp;amp;redirect_uri=https%3A%2F%2Fexample-client.com%2Fcallback%2F
-&amp;amp;client_id=6731de76-14a6-49ae-97bc-6eba6914391e
-&amp;amp;client_secret=JqQX2PNo9bpM0uEihUPzyrh
+grant_type=code
+redirect_uri=https%3A%2F%2Fexample-client.com%2Fcallback%2F
+client_id=6731de76-14a6-49ae-97bc-6eba6914391e
+client_secret=JqQX2PNo9bpM0uEihUPzyrh
 5）如果没什么问题，Authorization 会返回如下信息。
 {
   "access_token": "iJKV1QiLCJhbGciOiJSUzI1NiI",
@@ -384,7 +384,7 @@ GET /v1/user/pictures
 Host: https://example.resource.com
 
 Authorization: Bearer iJKV1QiLCJhbGciOiJSUzI1NiI
-&amp;nbsp;
+
  Client Credential Flow
 Client Credential 是一个简化版的API认证，主要是用于认证服务器到服务器的调用，也就是没有用户参与的的认证流程。下面是相关的流程图。
 
@@ -395,8 +395,8 @@ Host: server.example.com
 Content-Type: application/x-www-form-urlencoded
 
 grant_type=client_credentials
-&amp;amp;client_id=czZCaGRSa3F0Mzpn
-&amp;amp;client_secret=7Fjfp0ZBr1KtDRbnfVdmIw
+client_id=czZCaGRSa3F0Mzpn
+client_secret=7Fjfp0ZBr1KtDRbnfVdmIw
 返回示例
 {
   "access_token":"MTQ0NjJkZmQ5OTM2NDE1ZTZjNGZmZjI3",
@@ -407,7 +407,7 @@ grant_type=client_credentials
 }
 这里，容我多扯一句，微信公从平台的开发文档中，使用了OAuth 2.0 的 Client Credentials的方式（参看文档“微信公众号获取access token”），我截了个图如下所谓。我们可以看到，微信公众号使用的是GET方式的请求，把AppID和AppSecret放在了URL中，虽然这也符合OAuth 2.0，但是并不好，因为大多数网关代理会把整个URI请求记到日志中。我们只要脑补一下腾讯的网关的Access Log，里面的日志一定会有很多的各个用户的AppID和AppSecret……
 
-&amp;nbsp;
+
 小结
 讲了这么多，我们来小结一下（下面的小结可能会有点散）
 两个概念和三个术语
@@ -441,7 +441,7 @@ HMAC中无论是MD5还是SHA1/SHA2，其计算都是非常快的，RSA的非对�
  --&gt;
  关注CoolShell微信公众账号和微信小程序
 
-（转载本站文章请注明作者和出处 酷 壳 &amp;#8211; CoolShell ，请勿用于任何商业用途）
+（转载本站文章请注明作者和出处 酷 壳  CoolShell ，请勿用于任何商业用途）
 ——=== 访问 酷壳404页面 寻找遗失儿童。 ===——
 
 相关文章从“黑掉Github”学Web安全开发如何免费的让网站启用HTTPS关于移动端的钓鱼式攻击从 MongoDB “赎金事件” 看安全问题C语言的整型溢出问题bash代码注入的安全漏洞
@@ -487,7 +487,7 @@ DevOps Specialists 和 Site Reliability Engineers 是程序员中最有经验，
 下面我们再来看一个年龄图：
 
 调查报告从20岁开始每隔5年划分一个年龄段，我们不难发现从25-29岁开始每个年龄段都比前一个年龄段人数急剧减少大约30-50%，比如25-29年龄段占总人数27.6%，而30-34则只有19.3%。以此类推，到60岁以上，就只剩1%。可以看出5年是大多数程序员的转型周期。这是合理的，因为5年时间足够一个人积累足够的经验技能为职业转型做准备。
-我们也可以看到50岁以上的程序员只有4.2%，大约是参与调查人员的300多人，如果这些人20岁左右参加工作，那么说明他们在1990左右就开始写代码，事实上那个时间点别说是程序员了，连电脑用户都不多。电脑和互联网真正暴发的时间还是在1995年 &amp;#8211; 2000年之间，不过，那个时间点程序员的总体人数也不多，而行业越来越火才会导致大量的人进入到这个行业中，这个转换过程基本上去需要3-5年，也就是从2000年后才开始有大量的人拥入程序员这个行业，程序员的人数在过去30年间也是呈增涨态势的，所以，我个人认为，所谓的“众多老程序员”的比例会被2005年以后大量拥入程序员行业的年青人所“稀释”。所以，上图的比例不能完全说明程序员是个青春饭。
+我们也可以看到50岁以上的程序员只有4.2%，大约是参与调查人员的300多人，如果这些人20岁左右参加工作，那么说明他们在1990左右就开始写代码，事实上那个时间点别说是程序员了，连电脑用户都不多。电脑和互联网真正暴发的时间还是在1995年  2000年之间，不过，那个时间点程序员的总体人数也不多，而行业越来越火才会导致大量的人进入到这个行业中，这个转换过程基本上去需要3-5年，也就是从2000年后才开始有大量的人拥入程序员这个行业，程序员的人数在过去30年间也是呈增涨态势的，所以，我个人认为，所谓的“众多老程序员”的比例会被2005年以后大量拥入程序员行业的年青人所“稀释”。所以，上图的比例不能完全说明程序员是个青春饭。
 但是，我们还是要正视老牌资深的程序员越来越少的这个事实，在这份报告第三部分中说了一些和程序员职业生涯相关的调查，如下：
 
 在被问到有多少人对自己的职业满意的时。有40%的人觉得很满意，而有34.3%的人觉得一般满意，有10%的人说不清，还有15%的人是不满意的。可以看到有不少人是对这个职业生涯是有想法的。
@@ -522,14 +522,14 @@ DevOps Specialists 和 Site Reliability Engineers 是程序员中最有经验，
 
 Javascript/HTML/CSS是很多人都会用到的，后面的是SQL，这个也没什么问题，无论前后端的人，或多或少都会要用到的，这些技术感觉已经成为了基础必会的技术了，就像数中的加减乘除一样。
 Python/Java/Shell 是后端开发主流语言的前三强，Python在今年超过了Java。这里让我比较好奇的是居然还有很多人用Shell，这估计跟运维有关，所以，Python的热可能也是通过运维和大数据相关。
-流行语言后，第二梯队的是 C# / PHP / C++ / TypeScript / C ，接下来的是： Ruby / Go / Swift / Kotlin /WebAssembly / Rust&amp;#8230; 。但在最被程序员喜欢的编程语言中：Rust / Python / TypeScript / Koltin / WebAssembly / Swift / Go&amp;#8230; 都是排在前几名的。程序语言每隔一段时间就会整出一些新的语言来，我们一定要明白新出来的东西主要是为了解决什么样的问题，不然很容易迷失。
+流行语言后，第二梯队的是 C# / PHP / C++ / TypeScript / C ，接下来的是： Ruby / Go / Swift / Kotlin /WebAssembly / Rust 都是排在前几名的。程序语言每隔一段时间就会整出一些新的语言来，我们一定要明白新出来的东西主要是为了解决什么样的问题，不然很容易迷失。
 在后面还有一个编程语言的薪资图，我们可以看到，在上面被提过的这些个编程语言中，Go语言的薪资是最高的（这可能是因为Go语言写关键的系统级的中件间——因为Go语言正在成为云计算的第一编程语言），然后是Scala、Ruby、WebAssembly、Rust、Erlang、Shell、Python、Typescript……
 
 通过这些个信息，我们可以看出主流技术、有潜力的技术，传统过气技术，以及相关薪资，对我们在选择编程语言上有一定的启示。
 在后面，我们可以看到:
 
 在 Web 开发框架上，主流使用还是 jQuery, React.js，Angular.js 为最前面的三个前端开发框架。而被程序员所喜欢的则是 React.js，Vue.js，Express, Spring，程序员非常不喜欢 Drupal，jQuery，Ruby on Rails 和Angular.js……
-在其它开发框架/库/工具上，主流是Node.js、.NET、Pandas、Unity 3D、Tensorflow、Ansible、Cordova、Xamarin……而程序员比较喜欢的是.NET、Torch/PyTorch、Flutter、Pandas、Tensorflow、Node.js &amp;#8230;
+在其它开发框架/库/工具上，主流是Node.js、.NET、Pandas、Unity 3D、Tensorflow、Ansible、Cordova、Xamarin……而程序员比较喜欢的是.NET、Torch/PyTorch、Flutter、Pandas、Tensorflow、Node.js 
 在操作系统上，主流使用Linux、Windows、Docker、Android、AWS……，而程序员最喜欢的是Linux、Docker、Kubernetes、Raspberry Pi、AWS、MacOS、iOS……
 在数据库上，MySQL、PostgreSQL、MSSQL、SQLite、MongoDB、Redis、Elasticsearch是比较主流的，而程序员非常喜欢的是，Redis、PostgreSQL、Elasticsearch、Firebase、MongoDB……，程序员比较讨厌的是 Couchbase、Oracle、Cassandra、MySQL。
 
@@ -545,13 +545,13 @@ Visual Studio Code 成为了最流行的开发工具。让我没有想到的是�
 
 从上面这个图中，我们可以看以技术的几圈子：
 
-Microsoft圈 &amp;#8211; Windows、.NET、ASP.NET、C#、Azure、SQL Server
-Java圈 &amp;#8211; Java、Spring
-手机圈 &amp;#8211; Android、 iOS、Kotlin、Swift、Firebase
-前端圈 &amp;#8211; Javascript、React.js、Angular.js、PHP
-大数据圈 &amp;#8211; Python、TensorFlow、Torch/PyTorch
-基础平台圈 &amp;#8211; Linux、Shell、Vim、Docker、Kubernetes、Elasticsearch、Redis……
-其它圈子 &amp;#8211; C/C++/汇编圈子、Ruby圈子、Hadoop/Spark圈子、……
+Microsoft圈  Windows、.NET、ASP.NET、C#、Azure、SQL Server
+Java圈  Java、Spring
+手机圈  Android、 iOS、Kotlin、Swift、Firebase
+前端圈  Javascript、React.js、Angular.js、PHP
+大数据圈  Python、TensorFlow、Torch/PyTorch
+基础平台圈  Linux、Shell、Vim、Docker、Kubernetes、Elasticsearch、Redis……
+其它圈子  C/C++/汇编圈子、Ruby圈子、Hadoop/Spark圈子、……
 
 看到谁的圈子大了吧，圈子大的并不代表技术实力强或是有前途，不过可以代表在那个圈子相关的关联技术，一方面，可以给你一些相关的参考，另一方面，整体可以让你看到全部的目前比较主流的技术。
 第三部份 工作
@@ -574,7 +574,7 @@ Java圈 &amp;#8211; Java、Spring
  --&gt;
  关注CoolShell微信公众账号和微信小程序
 
-（转载本站文章请注明作者和出处 酷 壳 &amp;#8211; CoolShell ，请勿用于任何商业用途）
+（转载本站文章请注明作者和出处 酷 壳  CoolShell ，请勿用于任何商业用途）
 ——=== 访问 酷壳404页面 寻找遗失儿童。 ===——
 
 相关文章关于高可用的系统技术人员的发展之路什么是工程师文化？Leetcode 编程训练这多年来我一直在钻研的技术从Gitlab误删除数据库想到的
@@ -615,10 +615,10 @@ Work Smart
  --&gt;
  关注CoolShell微信公众账号和微信小程序
 
-（转载本站文章请注明作者和出处 酷 壳 &amp;#8211; CoolShell ，请勿用于任何商业用途）
+（转载本站文章请注明作者和出处 酷 壳  CoolShell ，请勿用于任何商业用途）
 ——=== 访问 酷壳404页面 寻找遗失儿童。 ===——
 
-相关文章什么是工程师文化？从Code Review 谈如何做技术关于高可用的系统技术人员的发展之路让我们来谈谈分工互联网之子 &amp;#8211; Aaron Swartz
+相关文章什么是工程师文化？从Code Review 谈如何做技术关于高可用的系统技术人员的发展之路让我们来谈谈分工互联网之子  Aaron Swartz
 </content>
     </doc>
     <doc>
@@ -646,13 +646,13 @@ cat .bash_history | sort | uniq -c | sort -rn | head -n 10 (or cat .zhistory | s
 在命令行中使用 alias 可以将使用频率很高命令或者比较复杂的命令合并成一个命令，或者修改原生的命令。
 下面这几个命令，可能是你天天都在敲的。所以，你应该设置成 alias 来提高效率
 
-alias nis=&amp;quot;npm install --save &amp;quot;
+alias nis=
 alias svim='sudo vim'
-alias mkcd='foo(){ mkdir -p &amp;quot;$1&amp;quot;; cd &amp;quot;$1&amp;quot; }; foo '
+alias mkcd='foo(){ mkdir -p  foo '
 alias install='sudo apt get install'
 alias update='sudo apt-get update; sudo apt-get upgrade'
-alias ..=&amp;quot;cd ..&amp;quot;
-alias ...=&amp;quot;cd ..; cd ..&amp;quot;
+alias ..=
+alias ...=
 alias www='python -m SimpleHTTPServer 8000'
 alias sock5='ssh -D 8080 -q -C -N -f user@your.server'
 
@@ -705,7 +705,7 @@ shell 的生命力很强，在各种高级编程语言大行其道的今天，�
 所以，我们还要学会只使用传统的grep/awk/sed等等这些POSIX的原生的系统默认安装的命令。
 当然，要写好一个脚本并不容易，下面有一些小模板供你参考：
 处理命令行参数的一个样例
-while [ &amp;quot;$1&amp;quot; != &amp;quot;&amp;quot; ]; do
+while [  do
     case $1 in
         -s  )   shift	
 		SERVER=$1 ;;  
@@ -726,23 +726,23 @@ done
 # Bash Menu Script Example
 
 PS3='Please enter your choice: '
-options=(&amp;quot;Option 1&amp;quot; &amp;quot;Option 2&amp;quot; &amp;quot;Option 3&amp;quot; &amp;quot;Quit&amp;quot;)
-select opt in &amp;quot;${options[@]}&amp;quot;
+options=()
+select opt in 
 do
     case $opt in
-        &amp;quot;Option 1&amp;quot;)
-            echo &amp;quot;you chose choice 1&amp;quot;
+        )
+            echo 
             ;;
-        &amp;quot;Option 2&amp;quot;)
-            echo &amp;quot;you chose choice 2&amp;quot;
+        )
+            echo 
             ;;
-        &amp;quot;Option 3&amp;quot;)
-            echo &amp;quot;you chose choice $REPLY which is $opt&amp;quot;
+        )
+            echo 
             ;;
-        &amp;quot;Quit&amp;quot;)
+        )
             break
             ;;
-        *) echo &amp;quot;invalid option $REPLY&amp;quot;;;
+        *) echo 
     esac
 done
 
@@ -762,20 +762,20 @@ Whi='\e[0;37m';     BWhi='\e[1;37m';    UWhi='\e[4;37m';    IWhi='\e[0;97m';    
 
 取当前运行脚本绝对路径的示例：（注：Linux下可以用 dirname $(readlink -f $0) ）
 
-FILE=&amp;quot;$0&amp;quot;
+FILE=
 while [[ -h ${FILE} ]]; do
-    FILE=&amp;quot;`readlink &amp;quot;${FILE}&amp;quot;`&amp;quot;
+    FILE=
 done
-pushd &amp;quot;`dirname &amp;quot;${FILE}&amp;quot;`&amp;quot; &amp;gt; /dev/null
+pushd  /dev/null
 DIR=`pwd -P`
-popd &amp;gt; /dev/null
+popd  /dev/null
 
 如何在远程服务器运行一个本地脚本
 #无参数
-ssh user@server 'bash -s' &amp;lt; local.script.sh
+ssh user@server 'bash -s'  local.script.sh
 
 #有参数
-ssh user@server ARG1=&amp;quot;arg1&amp;quot; ARG2=&amp;quot;arg2&amp;quot; 'bash -s' &amp;lt; local_script.sh
+ssh user@server ARG1= local_script.sh
 
 如何检查一个命令是否存在，用 which 吗？最好不要用，因为很多操作系统的 which 命令没有设置退出状态码，这样你不知道是否是有那个命令。所以，你应该使用下面的方式。
 
@@ -788,10 +788,10 @@ type [the_command]
 
 # 示例：
 gnudate() {
-    if hash gdate 2&amp;gt; /dev/null; then
-        gdate &amp;quot;$@&amp;quot;
+    if hash gdate 2 then
+        gdate 
     else
-        date &amp;quot;$@&amp;quot;
+        date 
     fi
 }
 
@@ -801,14 +801,14 @@ gnudate() {
 使用 -u 参数，如： set -eu，这意味着，如果你代码中有变量没有定义，就会退出。
 对一些变理，你可以使用默认值。如：${FOO:-'default'}
 处理你代码的退出码。这样方便你的脚本跟别的命令行或脚本集成。
-尽量不要使用 ; 来执行多个命令，而是使用 &amp;amp;&amp;amp;，这样会在出错的时候停止运行后续的命令。
+尽量不要使用 ; 来执行多个命令，而是使用 ，这样会在出错的时候停止运行后续的命令。
 对于一些字符串变量，使用引号括起，避免其中有空格或是别的什么诡异字符。
 如果你的脚有参数，你需要检查脚本运行是否带了你想要的参数，或是，你的脚本可以在没有参数的情况下安全的运行。
 为你的脚本设置 -h 和 --help 来显示帮助信息。千万不要把这两个参数用做为的功能。
-使用 $() 而不是 &amp;#8220; 来获得命令行的输出，主要原因是易读。
+使用 $() 而不是  来获得命令行的输出，主要原因是易读。
 小心不同的平台，尤其是 MacOS 和 Linux 的跨平台。
 对于 rm -rf 这样的高危操作，需要检查后面的变量名是否为空，比如：rm -rf $MYDIDR/* 如果 $MYDIR为空，结果是灾难性的。
-考虑使用 &amp;#8220;find/while&amp;#8221; 而不是 “for/find”。如：for F in $(find . -type f) ; do echo $F; done 写成 find . -type f | while read F ; do echo $F ; done 不但可以容忍空格，而且还更快。
+考虑使用  done 不但可以容忍空格，而且还更快。
 防御式编程，在正式执行命令前，把相关的东西都检查好，比如，文件目录有没有存在。
 
 你还可以使用ShellCheck 来帮助你检查你的脚本。
@@ -854,7 +854,7 @@ https://terminalsare.sexy/
  --&gt;
  关注CoolShell微信公众账号和微信小程序
 
-（转载本站文章请注明作者和出处 酷 壳 &amp;#8211; CoolShell ，请勿用于任何商业用途）
+（转载本站文章请注明作者和出处 酷 壳  CoolShell ，请勿用于任何商业用途）
 ——=== 访问 酷壳404页面 寻找遗失儿童。 ===——
 
 相关文章应该知道的Linux技巧你可能不知道的ShellDocker基础技术：AUFSbash代码注入的安全漏洞Docker基础技术：DeviceMapperDocker基础技术：Linux Namespace（下）
@@ -913,17 +913,17 @@ Small minds discuss people
 价值取向
 下面是一些大家经常在说，可能也是大多数人关心的问题，就这些问题，我也谈谈我的价值取向。
 挣钱。挣钱是一个大家都想做的事，但你得解决一个很核心的问题，那就是为什么别人愿意给你钱？对于挣钱的价值观从我大学毕业到现我就没怎么变过，那就是我更多关注的是怎么提高自己的能力，让自己值那个价钱，让别人愿意付钱。另外一方面，我发现，越是有能力的人，就越不计较一些短期得失，越计较短期得失的人往往都是很平庸的人。有能力的人不会关心自己的年终奖得拿多少，会不会晋升，他们更多的关心自己真正的实力有没有超过更多的人，更多的关注的是自己长远的成长，而不是一时的利益。聪明的人从来不关心眼前的得失，不会关心表面上的东西，他们更多关心的是长期利益，关心长期利益的人一定不是投机者，一定是投资者，投资会把自己的时间精力金钱投资在能让自己成长和提升的地方，那些让自己可以操更大的盘的地方，他们培养自己的领导力和影响力。而投机者在职场上会通过溜须拍马讨好领导，在学习上追求速成，在投资上使用跟随策略，在创业上甚至会不择手段，当风险来临时，投机者是几乎完全没有抗风险能力的，他们所谓的能力只不过因为形势好。
-&amp;nbsp;
+
 技术。对于计算机技术来说，要学的东西实在是太多，我并不害怕要学的东西很多，因为学习能力是一个好的工程师必需具备的事，我不惧怕困难和挑战。我觉得在语言和技术争论谁好谁坏是一种幼稚的表现， 没有完美的技术，Engineering 玩的是 Tradeoff。所以，我对没有完美的技术并不担心，但是我反而担心的是，当我们进入到一些公司后，这些公司会有一些技术上的沉淀也就是针对公司自己的专用技术，比如一些中间件，一些编程框架，lib库什么的。老实说，我比较害怕公司的专用技术，因为一旦失业，我建立在这些专用技术上的技能也会随之瓦解，有时候，我甚至害怕把我的技术建立在某一个平台上，小众的不用说了，大众的我也比较担扰，比如Windows或Unix/Linux上，因为一旦这个平台不流行或是被取代，那么我也会随之淘汰（过去的这20年已经发生过太多这样的事了）。为了应对这样的焦虑，我更愿意花时间在技术的原理和技术的本质上，这导致我需要了解各种各样的技术的设计方法，以及内在原理。所以，当国内的绝大多数程序员们更多的关注架构性能的今天，我则花更多的时间去了解编程范式，代码重构，软件设计，计算机系统原理，领域设计，工程方法……因为只有原理、本质和设计思想才可能让我不会被绑在某个专用技术或平台上，除非，我们人类的计算机这条路没走对。
-&amp;nbsp;
+
 职业。在过去20多年的职业生涯中，我从基层工程师做到管理，很多做技术的人都会转管理，但我却还是扎根技术，就算是在今天，还是会抠很多技术细节，包括写代码。因为我心里觉得，不写代码的人一定是做不好技术管理的，因为做技术管理有人要做技术决定，从不上手技术的人是做不好技术决定的，另一方面，我觉得管理是支持性的工作，不是产出性的工作，大多数的管理者无非是因为组织大了，所以需要管人管事，所以，必然要花大量的时间和精力处理各种问题，甚至办公室政治，然而，如果有一天失业了，大环境变得不好了，一个管理者和一个程序员要出去找工作，程序员会比管理者更能自食其力。所以，我并不觉得管理者这个职业有意思，我还是觉得程序员这个有创造性的职业更有趣。通常来说，管理者的技能力需要到公司和组织里才能展现，而有创造力的技能的人是可以自己独立的能力，所以，我觉得程序员的技能比管理者的技能能让我更稳定更自地活着。所以，我更喜欢“电影工作组”那样的团队和组织形式。
-&amp;nbsp;
+
 打工。对于打工，也就是加入一家公司工作，无论是在一家小公司还是一家大公司工作，都会有好的和不好的，任何公司都有其不完美的地方，这个需要承认。首先第一的肯定是完成公司交给你的任务（但我也不会是傻傻地完成工作，对于一些有问题的任务我也会提出我的看法），然后我会尽我所能在工作找到可以提高效率的地方进行改善。在推动公司/部门/团队在一技术和工程方面进步并不是一件很容易的事，因为进步是需要成本的，有时候，这种成本并不一定是公司和团队愿意接受的，而另外，从客观规律上来说，一件事的进步一定是会有和现状有一些摩擦的。有的人害怕有摩擦而忍了，而我则不是，我觉得与别人的摩擦并不可怕，因为大家的目标都是基本一致的，只是做事的标准和方式不一样，这是可能沟通的，始终是会相互理解的。而如果你没有去推动一个事，我觉得对于公司对于我个人来说，都是一种对人生的浪费，敬业也好，激情也好，其就是体现在你是否愿意冒险去推动一件于公于私都有利的事，而不是成为一个“听话”、“随大流”、“懒政”的人，即耽误了公司也耽误了自己。所以，我更信仰的是《做正确的事情，等着被开除》，这些东西，可参看《我看绩效考核》，以及我在Gitchat上的一些问答。
-&amp;nbsp;
+
 创业。前两天，有个小伙来跟我说，说他要离开BAT要去创业公司了，说在那些更自由一些，没有大公司的种种问题。我毫不犹豫地教育了他一下，我说，你选择这个创业公司的动机不对啊，你无非就是在逃避一些东西罢了，你把创业公司当做是一个避风港，这是不对的，创业公司的问题可能会更多，去创业公司的更好的心态是，这个创业公司在干的事业是不是你的事业？说白了，如果你是为了你的事业，为了解决个什么，为了改进个什么，那么，创业是适合你的，也只有在做自己事业的时候，你才能不惧困难，才会勇敢地面对一切。那种想找一个安稳的避风港呆着的心态是不会让你平静地，你要知道世界本来就是不平静的，找了自己的归宿和目标才可能让你真正的平静。所以，在我现的创业团队，我不要求大家加班，我也不鸡汤洗脑，对于想要加入的人，我会跟他讲我现在遇到的各种问题以及各种机遇，并一直在让他自己思考，我们在做的事是不是自己的事业诉求？还可不可以更好？每个人都应该为自己的事业为自己的理想去活一次，追逐自己的事业和理想并不容易，需要有很大的付出，而也只有你心底里的那个理想值得这么大的付出……
-&amp;nbsp;
+
 客户。基于上述的价值观，在我现在创业的时候，我在面对客户的时候，也是一样的，我并不会完全的迁就于客户，我的一些银行客户和互联网客户应该体会到我的做的方式了，我并不觉得迁就用户，用户要什么我就应该给什么，用户想听什么，我就说什么，虽然这样可以省着精力，更圆滑，但这都不是我喜欢的，我更愿意鲜明地表达我的观点，并拉着用户跟我一起成长，因为我并不觉得完成客户的项目有成就感，我的成就感来自客户的成长。所以，面对客户有些做得不对有问题有隐患的地方，或是有什么做错的事，我基本上都是直言不讳地说出来，因为我觉得把真实的相法说出来是对客户和对自己最基本的尊重，不管客户最终的选择是什么，我都要把利弊跟客户讲清楚。我并不是在这里装，因为，我也想做一些更高级更有技术含量的事，所以，对于一些还达到的客户，我如果不把他们拉上来，我也对不起自己。
-&amp;nbsp;
+
 在我“不惑之年”形成了这些价值观体系，也许未来还会变，也许还不成熟，总之，我不愿跟大多数人一样，因为大多数人都是随遇而安随大流的，因为这样风险最小，而我想走一条属于自己的路，做真正的自己，就像我24岁从银行里出来时想的那样，我选择对了一个正确的专业（计算机科学），呆在了一个正确的年代（信息化革命），这样的“狗屎运”几百年不遇，如果我还患得患失，那我岂不辜负活在这样一个刺激的时代？！我所要做的就是在这个时代中做有价值的事就好了！这个时代真的是太好了！
 (全文完)&lt;!--
 
@@ -932,10 +932,10 @@ Small minds discuss people
  --&gt;
  关注CoolShell微信公众账号和微信小程序
 
-（转载本站文章请注明作者和出处 酷 壳 &amp;#8211; CoolShell ，请勿用于任何商业用途）
+（转载本站文章请注明作者和出处 酷 壳  CoolShell ，请勿用于任何商业用途）
 ——=== 访问 酷壳404页面 寻找遗失儿童。 ===——
 
-相关文章技术人员的发展之路什么是工程师文化？这多年来我一直在钻研的技术关于高可用的系统「我只是认真」聊聊工匠情怀互联网之子 &amp;#8211; Aaron Swartz
+相关文章技术人员的发展之路什么是工程师文化？这多年来我一直在钻研的技术关于高可用的系统「我只是认真」聊聊工匠情怀互联网之子  Aaron Swartz
 </content>
     </doc>
     <doc>
@@ -996,12 +996,12 @@ $ ls /var/run/docker/netns | xargs -I {} nsenter --net=/var/run/docker/netns/{} 
 10.233.14.145 我们查到了这个IP，说明，docker的namespace下还有这个IP。
 10.233.14.137，这个IP没有在docker的network namespace下查到。
 
-有namespace leaking？于是我上网查了一下，发现了一个docker的bug &amp;#8211; 在docker remove/stop 一个容器的时候，没有清除相应的network namespace，这个问题被报告到了 Issue#31597 然后被fix在了 PR#31996，并Merge到了 Docker的 17.05版中。而用户的版本是 17.09，应该包含了这个fix。不应该是这个问题，感觉又走不下去了。
+有namespace leaking？于是我上网查了一下，发现了一个docker的bug  在docker remove/stop 一个容器的时候，没有清除相应的network namespace，这个问题被报告到了 Issue#31597 然后被fix在了 PR#31996，并Merge到了 Docker的 17.05版中。而用户的版本是 17.09，应该包含了这个fix。不应该是这个问题，感觉又走不下去了。
 不过， 10.233.14.137 这个IP可以ping得通，说明这个IP一定被绑在某个网卡，而且被隐藏到了某个network namespace下。
-到这里，要查看所有network namespace，只有最后一条路了，那就是到 /proc/ 目录下，把所有的pid下的 /proc/&amp;lt;pid&amp;gt;/ns 目录给穷举出来。好在这里有一个比较方便的命令可以干这个事 ： lsns
+到这里，要查看所有network namespace，只有最后一条路了，那就是到 /proc/ 目录下，把所有的pid下的 /proc//ns 目录给穷举出来。好在这里有一个比较方便的命令可以干这个事 ： lsns
 于是我写下了如下的命令：
 
-$ lsns -t net | awk ‘{print $4}' | xargs -t -I {} nsenter -t {}&amp;amp;nbsp;-n ip addr | grep -C 4 &amp;quot;10.233.14.137&amp;quot;
+$ lsns -t net | awk ‘{print $4}' | xargs -t -I {} nsenter -t {}
 
 解释一下。
 
@@ -1027,13 +1027,13 @@ docker-contiane 应该是 dockerd 的子进程，被挂到了 pid 1 只有一
 3） 各种诊断工具要比较熟悉，这会让你事半功倍。
 4）系统维护和做清洁比较类似，需要经常看看系统中是否有一些僵尸进程或是一些垃圾东西，这些东西要及时清理掉。
 最后，多说一下，很多人都说，Docker适合放在物理机内运行，这并不完全对，因为他们只考虑到了性能成本，没有考虑到运维成本，在这样512GB中启动几百个容器的玩法，其实并不好，因为这本质上是个大单体，因为你一理要重启某些关键进程或是机器，你的影响面是巨大的。
-&amp;nbsp;
+
 ———————— 更新 2018/12/10 —————————
 问题原因
-这两天在自己的环境下测试了一下，发现，只要是通过 systemctl start/stop docker 这样的命令来启停 Docker， 是可以把所有的进程和资源全部干掉的。这个是没有什么问题的。我唯一能重现用户问题的的操作就是直接 kill -9 &amp;lt;dockerd pid&amp;gt; 但是这个事用户应该不会干。而 Docker 如果有 crash 事件时，Systemd 是可以通过 journalctl -u docker 这样的命令查看相关的系统日志的。
+这两天在自己的环境下测试了一下，发现，只要是通过 systemctl start/stop docker 这样的命令来启停 Docker， 是可以把所有的进程和资源全部干掉的。这个是没有什么问题的。我唯一能重现用户问题的的操作就是直接 kill -9  但是这个事用户应该不会干。而 Docker 如果有 crash 事件时，Systemd 是可以通过 journalctl -u docker 这样的命令查看相关的系统日志的。
 于是，我找用户了解一下他们在Docker在启停时的问题，用户说，他们的执行 systemctl stop docker 这个命令的时候，发现这个命令不响应了，有可能就直接按了 Ctrl +C 了！
 这个应该就是导致大量的 docker-containe 进程挂到 PID 1 下的原因了。前面说过，用户的一台物理机上运行着上百个容器，所以，那个进程树也是非常庞大的，我想，停服的时候，系统一定是要遍历所有的docker子进程来一个一个发退出信号的，这个过程可能会非常的长。导致操作员以为命令假死，而直接按了 Ctrl + C ，最后导致很多容器进程并没有终止……
-&amp;nbsp;
+
 其它事宜
 有同学问，为什么我在这个文章里写的是 docker-containe 而不是 containd 进程？这是因为被 pstree 给截断了，用 ps 命令可以看全，只是进程名的名字有一个 docker-的前缀。
 下面是这两种不同安装包的进程树的差别（其中 sleep 是我用 buybox 镜像启动的）
@@ -1063,7 +1063,7 @@ docker-proxy 你有可能还会在新版本的Docker中见到这个进程，这
 
 更多的细节，大家可以自行Google。这里推荐两篇文章：
 
-Docker, Containerd &amp;amp; Standalone Runtimes — Here’s What You Should Know
+Docker, Containerd  Standalone Runtimes — Here’s What You Should Know
 Docker components explained
 
 （全文完）&lt;!--
@@ -1073,7 +1073,7 @@ Docker components explained
  --&gt;
  关注CoolShell微信公众账号和微信小程序
 
-（转载本站文章请注明作者和出处 酷 壳 &amp;#8211; CoolShell ，请勿用于任何商业用途）
+（转载本站文章请注明作者和出处 酷 壳  CoolShell ，请勿用于任何商业用途）
 ——=== 访问 酷壳404页面 寻找遗失儿童。 ===——
 
 相关文章Docker基础技术：Linux CGroupDocker基础技术：DeviceMapperDocker基础技术：AUFSDocker基础技术：Linux Namespace（下）Docker基础技术：Linux Namespace（上）Linux PID 1 和 Systemd
@@ -1098,7 +1098,7 @@ Docker components explained
 下面是这份练级攻略的目录，目前只在极客时间上发布，你需要付费阅读（在本文最后有相关的二维码）。
 
 
-&amp;nbsp;
+
 那么，除程序员练级攻略外，我还写了哪些内容？下面是迄今为止我所有的文章的目录。你可以在下面看一下相关的目录。这也算是我开收费专栏来8个月给大家的一份答卷吧。我也没有想到，我居然写了这么多的文章，而且对很多人都很有用。
 首先是个人成长和经验之谈的东西，在这里的文章还没有完全更新完，未来要更新什么我也不清楚，但是可以呈现出来的内容和方向如下所示，供你参考。对于个人成长中的内容，都是我多年来的心得和体会，从读者的反馈来看是非常不错的，你一定要要阅读的。
 
@@ -1109,7 +1109,7 @@ Docker components explained
 最后是我的私心，因为我也在创业，所以，技术细节上东西正是我在做的产品，所以，如果你想了解得更细，你需要和我有更商业合作。
 
 
-&amp;nbsp;
+
 
 
 
@@ -1117,7 +1117,7 @@ Docker components explained
 
 我的专栏还在继续，接下来还有一个系列的文章——《从技术到管理》，欢迎关注，也欢迎扫码订阅。
 最后友情提示一下：在手机上学习并不是最好的学习方式，也不要在我的专栏上进行学习，把我的专栏当成一个你的助手，当成一个向导，当成一个跳板，真正的学习还是要在线下，专心的，系统地、有讨论地、不断实践地学习，这点希望大家切记！
-&amp;nbsp;
+
 
 （全文完）&lt;!--
 
@@ -1126,7 +1126,7 @@ Docker components explained
  --&gt;
  关注CoolShell微信公众账号和微信小程序
 
-（转载本站文章请注明作者和出处 酷 壳 &amp;#8211; CoolShell ，请勿用于任何商业用途）
+（转载本站文章请注明作者和出处 酷 壳  CoolShell ，请勿用于任何商业用途）
 ——=== 访问 酷壳404页面 寻找遗失儿童。 ===——
 
 相关文章关于高可用的系统程序员技术练级攻略从Gitlab误删除数据库想到的对技术的态度如何学好C语言Leetcode 编程训练
@@ -1141,9 +1141,9 @@ Docker components explained
 为什么要开设一个收费专栏
 首先，说一下，为什么要开这个收费专栏。
 老实说，我一开始根本就不想开收费专栏的，是的，完全不想！主要是有两个原因，一方面是我在创业中，我自然是没有太多的时间，另一方面是，我以前在《为什么我不在微信公众号上写文章》也说过，我觉得知识最好的方式是被检索、讨论、引用、整理、补充和更新。所以，收费这种模式，我感觉并不利于很好的传播。但是，我为什么还干了这么一件事？这事还得从2017年6月份开始说起。
-这个月，一共有三家技术社区来找我，都是希望我能去他们那边开收费专栏，其中一家就是“极客邦科技”。对于这三家来说，从一开始我就是以婉拒的姿态回应的。而“极客邦科技”来找我的时候和我说，一周写五篇，写一年，一共260篇。我当时心想，“去你的，当我啥呢，你们真以为技术文章好写啊&amp;#8221;？然后，他们问我可以写多少，我说，我现在也就一个月一篇的节奏……
+这个月，一共有三家技术社区来找我，都是希望我能去他们那边开收费专栏，其中一家就是“极客邦科技”。对于这三家来说，从一开始我就是以婉拒的姿态回应的。而“极客邦科技”来找我的时候和我说，一周写五篇，写一年，一共260篇。我当时心想，“去你的，当我啥呢，你们真以为技术文章好写啊？然后，他们问我可以写多少，我说，我现在也就一个月一篇的节奏……
 
-然后，就开始了时间漫长的拉锯战。极客邦这边一直从6月份和我谈到9月份，完全就是不达目的不罢休的玩法，其间，每当我说一个问题，他们就会想出一个解，我这边不断地制造不能写下去的问题，他们就不断的给出相应的解。我其实是想让他们知难而退，另外，我也不确定这帮人对于这个事有多上心，因为写技术文章是需要非常认真的态度的，所以，我提出了很多比较苛刻的条件，甚至也很直白的直接拒绝，但是他们完全就跟没有听见似的，不断的想新的方法来让我&amp;#8221;上床&amp;#8221;（对！就是上床，不是上船）。
+然后，就开始了时间漫长的拉锯战。极客邦这边一直从6月份和我谈到9月份，完全就是不达目的不罢休的玩法，其间，每当我说一个问题，他们就会想出一个解，我这边不断地制造不能写下去的问题，他们就不断的给出相应的解。我其实是想让他们知难而退，另外，我也不确定这帮人对于这个事有多上心，因为写技术文章是需要非常认真的态度的，所以，我提出了很多比较苛刻的条件，甚至也很直白的直接拒绝，但是他们完全就跟没有听见似的，不断的想新的方法来让我（对！就是上床，不是上船）。
 
 我说，我最多一个月写2-3篇。他们和我说，我们看过了，你写的都是长文，都在5000字左右，一篇可以拆成上下篇，这样就有6篇左右了，然后，你每个月再来两篇文章，一篇是推荐一些资料或资源，一篇是回答读者的问题。这样就有8篇了，一周就可以发2篇了。
 
@@ -1195,16 +1195,16 @@ Docker components explained
 希望大家在新的一年里也能遇到这样的人。我们一起加油！
 
 图片来自：电影《速度与激情》——Ride or Die
-&amp;nbsp;
+
 （全文完）
-&amp;nbsp;&lt;!--
+&lt;!--
 
 
 
  --&gt;
  关注CoolShell微信公众账号和微信小程序
 
-（转载本站文章请注明作者和出处 酷 壳 &amp;#8211; CoolShell ，请勿用于任何商业用途）
+（转载本站文章请注明作者和出处 酷 壳  CoolShell ，请勿用于任何商业用途）
 ——=== 访问 酷壳404页面 寻找遗失儿童。 ===——
 
 相关文章DHH 谈混合移动应用开发Google Inbox如何跨平台重用代码？HTML6 展望两本电子书一些文章资源和趣闻一些非常有意思的杂项资源
@@ -1287,7 +1287,7 @@ PaaS 层是承上启下的关键技术，任何一个不重视 PaaS 的公司，
 一个公司或是个人能够占有技术先机，就会比其它公司或个人有更大的影响力。一旦未来行业需求引爆，那么这个公司或是个人的影响力就会形成一个比较大的护城河，并可以快速地产生经济利益。
 近期，在与中国移动、中国电信以及一些股份制银行进行交流的过程中，我已看到通讯行业、金融行业对于 PaaS 平台的理解已经超过了互联网公司，而我近 3 年来在这些技术上的研究让我也从中受益非浅。
 所以，Go 语和 Docker 作为 PaaS 平台的关键技术前途是无限的，我很庆幸赶上了这个浪潮，也很庆幸在 3 年前我就看到了这个趋势，现在我也在用这些技术开发相关的技术产品，助力于为高速成长的公司提供这些关键技术。
-&amp;nbsp;
+
 最后注明一下：
 这篇文章于上周发布于“极客时间”的我的付费专栏中。极客时间中的付费是我受Geekbang邀请写的一个付费专栏，因为过去10多年给企业有过很多内训，过去2年又给好多企业做过一些咨询工作，所以，我会把一些商业化的内容写在极客时间里，当然，也会有一些我的新文章。关于这个事，我后面我专门开一篇文章说一下。（大家可以到 Apple的App Store上搜极客时间，Android版本等到12月初吧）
 
@@ -1298,7 +1298,7 @@ PaaS 层是承上启下的关键技术，任何一个不重视 PaaS 的公司，
  --&gt;
  关注CoolShell微信公众账号和微信小程序
 
-（转载本站文章请注明作者和出处 酷 壳 &amp;#8211; CoolShell ，请勿用于任何商业用途）
+（转载本站文章请注明作者和出处 酷 壳  CoolShell ，请勿用于任何商业用途）
 ——=== 访问 酷壳404页面 寻找遗失儿童。 ===——
 
 相关文章Go语言的修饰器编程Go 语言简介（上）— 语法Go 语言简介（下）— 特性Docker基础技术：Linux Namespace（上）Docker基础技术：DeviceMapperDocker基础技术：Linux Namespace（下）
@@ -1309,7 +1309,7 @@ PaaS 层是承上启下的关键技术，任何一个不重视 PaaS 的公司，
         <title>关于Facebook 的 React 专利许可证</title>
         <link>https://coolshell.cn/articles/18140.html</link>
         <description>随着Apache、百度、Wordpress都在和Facebook的React.js以及其专利许可证划清界限，似乎大家又在讨论Facebook的这个BSD+PAT... Read More  Read More</description>
-        <content>随着Apache、百度、Wordpress都在和Facebook的React.js以及其专利许可证划清界限，似乎大家又在讨论Facebook的这个BSD+PATENT的许可证问题了。这让我想起了之前在Medium读过的一篇文章——《React, Facebook, and the Revocable Patent License, Why It&amp;#8217;s a Paper》，我觉得那篇文章写的不错，而且还是一个会编程的律师写的，所以有必要把这篇文章传播到中文社区这边来。注意，我不会全部翻译，我只是用我的语言来负责搬运内容和观点，我只想通过这篇文章让大家了解一下这个世界以及专利相关的知识，这样可以避免你看到某乎的“怎么看待XXX”这类的问题时人云亦云，能有自己的独立思考和自我判断。;-)
+        <content>随着Apache、百度、Wordpress都在和Facebook的React.js以及其专利许可证划清界限，似乎大家又在讨论Facebook的这个BSD+PATENT的许可证问题了。这让我想起了之前在Medium读过的一篇文章——《React, Facebook, and the Revocable Patent License, Why It-)
 这篇文章的作者叫Dennis Walsh，他自称是亚历桑那和加利福尼亚州的律师，主要针对版权法和专利诉论的法律领域。但是这个律师不一样，他更很喜欢商业和软件多一些。现在他用React/GraphQL/Elixir在写一个汽车代理销售相关的软件，而且已经发布到第2版了。
 首先，作者表明，专利法经常被人误解，因为其实充满了各种晦涩难懂的法律术语，所以，作者用个例子来讲述专利的一个原则 —— 专利并不是授于让你制造或开发的权利，而是授予你可以排他的权利。（事实上似乎也是这样，申请专利很多时候都不是为了制作相关的产品，而是为了防止别人使用类似的技术制作相关的产品）
 
@@ -1317,17 +1317,17 @@ PaaS 层是承上启下的关键技术，任何一个不重视 PaaS 的公司，
 所以，公司Y的橡皮擦专利又被广泛地叫作“Blocking Patent”。公司Y不能说他发明了铅笔，因为这是公司X的专利，但是，他们可以让公司X无法对铅笔做出某些改进。
 于是，因为这种 Blocking Patent 存在，对于开源的公司是不利的，因为根据上面的那个例子来说，开源公司就是公司X，他们做了一个基础的软件，而公司Y在上面做了些改进，并注册成了专利，从而导致开源的公司X无法对它基础开源软件作出被公司Y专利阻止的改进，开源的公司X希望能够自由地使用公司Y的橡皮擦专利，因为毕竟是它发明了铅笔并放弃了铅笔的专利。
 于是就出来了“专利反击条款”（Patent Retaliation Clauses）。一般来说有两种专利条款，一种是弱条款，一种是强条款。
-Weak Patent Retaliation Clauses &amp;#8211; 这种条款声明，如果许可证持有者用某个专利来打击许可证颁布者，那么专利就视为终止。用人话来表达就是，公司X做了一个开源铅笔，而公司Y注册了橡皮檫专利。此时，公司X做了一支带像皮擦的铅笔，而公司Y马上对公司X提起专利侵权诉讼。那么，公司Y就失去了对底层铅笔的专利控制。（正如前面所说的，公司Y的橡皮擦专利因为在起诉公司X的开源铅笔，而失去了对开源铅笔的专利排他权利）
-Strong Patent Retailiation Clauses &amp;#8211; 这种条款声明比“弱条款”要的更多。具体来说就是，任何专利声明终结许可证，而不管这个专利有没有和你基础的软件有关系。用人话来说就是，公司Y使用他们的热气球专利来起诉公司X，那么公司Y就失去了他们对铅笔的专利限制。
+Weak Patent Retaliation Clauses  这种条款声明，如果许可证持有者用某个专利来打击许可证颁布者，那么专利就视为终止。用人话来表达就是，公司X做了一个开源铅笔，而公司Y注册了橡皮檫专利。此时，公司X做了一支带像皮擦的铅笔，而公司Y马上对公司X提起专利侵权诉讼。那么，公司Y就失去了对底层铅笔的专利控制。（正如前面所说的，公司Y的橡皮擦专利因为在起诉公司X的开源铅笔，而失去了对开源铅笔的专利排他权利）
+Strong Patent Retailiation Clauses  这种条款声明比“弱条款”要的更多。具体来说就是，任何专利声明终结许可证，而不管这个专利有没有和你基础的软件有关系。用人话来说就是，公司Y使用他们的热气球专利来起诉公司X，那么公司Y就失去了他们对铅笔的专利限制。
 我个人理解起来，这两种条款看上去是防御性质的。
 Facebook的React的Patent License如下：
 The license granted hereunder will terminate, automatically and without notice,if you (or any of your subsidiaries, corporate affiliates or agents) initiatedirectly or indirectly, or take a direct financial interest in, any Patent Assertion: (i) against Facebook or any of its subsidiaries or corporateaffiliates, (ii) against any party if such Patent Assertion arises in whole orin part from any software, technology, product or service of Facebook or any ofits subsidiaries or corporate affiliates, or (iii) against any party relating to the Software. Notwithstanding the foregoing, if Facebook or any of itssubsidiaries or corporate affiliates files a lawsuit alleging patentinfringement against you in the first instance, and you respond by filing apatent infringement counterclaim in that lawsuit against that party that isunrelated to the Software, the license granted hereunder will not terminateunder section (i) of this paragraph due to such counterclaim.
 这些条款中和基础软件没有任何关系，所以，这个条款是“强专利反击条款”。
 在后面，本文的作者又解解释了，为什么React的“强专利反击条款”就跟没有似的。他在文中针对一些歇斯底里的言论，如：“Facebook不用害怕专利诉讼了，而且他可以随时偷袭你家的专利仓库”，也作出了一些解释来分析这个事。
-Contractural Liability &amp;#8211; 意思是说，专利方面的东西只会影响专利上的事，而不会影响和专利无关的事，React底层协议是BSD-3许可证还是会被保留。换句话说，React的“强专利反击条款”只生效于专利层面，而不会对非常专利的软件使用产生问题，如果和专利无关，React还是走BSD-3的许可协议。
-Copyright Liability &amp;#8211; 这个和Contractural Liablitity 一样。作者说，如果有人有特别的案例或是有说服力的论据来说明Facebook的这个条款会作用于非专利的地方，那么，请告诉他。
-Patent Liability &amp;#8211; 专利的责任和损害是两件事，非专业人士总是会把其搞混。
-第一个问题是Liability， 要搞清这个事，得搞清“Patent&amp;#8217;s Claims”，而不是这个技术的技术规格说明，技术规格说明和权力主张是两码事。作者说，现在的很多专利都是一些想法，很多投机份子随便一拍脑袋就发明出一个想法，然后就去注册专利了。但是可以被用来法律执行的只有“Patent&amp;#8217;s Claims”（专利的权利主张），而不是那些想法。这些权利主张相当相当的晦涩难读，而且是会故意被模糊掉的，因为，当你清楚的定义了你的发明是什么，那么，就可以清楚的定义出来什么不是你的发明。比如：一个铅笔专利权利主张里说，“这一个用石墨和木头组合起来的写字工具”，那么，只要我不用木头和石墨来做组合，而是用塑料来做组合，那么我就不是专利侵权。所以，一般来说，专利主张是会更为通用一些，比如，“这是一个用于涂画表面的装置，其包括：与涂画端相连的握持端”。作者这里给了一个苹果公司的滑动解锁专利的示例。可以感受一下产品规格说明和专利权利主张完全是两码事。
+Contractural Liability  意思是说，专利方面的东西只会影响专利上的事，而不会影响和专利无关的事，React底层协议是BSD-3许可证还是会被保留。换句话说，React的“强专利反击条款”只生效于专利层面，而不会对非常专利的软件使用产生问题，如果和专利无关，React还是走BSD-3的许可协议。
+Copyright Liability  这个和Contractural Liablitity 一样。作者说，如果有人有特别的案例或是有说服力的论据来说明Facebook的这个条款会作用于非专利的地方，那么，请告诉他。
+Patent Liability  专利的责任和损害是两件事，非专业人士总是会把其搞混。
+第一个问题是Liability， 要搞清这个事，得搞清“Patents Claims”（专利的权利主张），而不是那些想法。这些权利主张相当相当的晦涩难读，而且是会故意被模糊掉的，因为，当你清楚的定义了你的发明是什么，那么，就可以清楚的定义出来什么不是你的发明。比如：一个铅笔专利权利主张里说，“这一个用石墨和木头组合起来的写字工具”，那么，只要我不用木头和石墨来做组合，而是用塑料来做组合，那么我就不是专利侵权。所以，一般来说，专利主张是会更为通用一些，比如，“这是一个用于涂画表面的装置，其包括：与涂画端相连的握持端”。作者这里给了一个苹果公司的滑动解锁专利的示例。可以感受一下产品规格说明和专利权利主张完全是两码事。
 专利这些事，在法律界里是非常非常困难作出评估的。所以，这个社会每年都会给律师们几十亿美金来一遍又一遍地回答这些问题，而且律师还经常回答错了。而对于美国的法律，对于专利诉讼会有一个叫Markman hearing的审前听证会（马克曼听证会），自从1996年美国最高法的“马克曼诉威斯幽仪器公司案”这个听证会就变成了一个惯例，美国联邦法院用这个听证会来向决定专利权利主张的解释，而且，上诉法院还经常性的推翻审判法院的裁决。（对于美国法律来说，一般是法官认证法律，陪审团认定事实，然而，对于专利而言，1996年的那个案件认为专利术语是一个需要法官决定的法律问题，而不是陪审团决定的事实问题。关于马克曼听证会的事，可以参看本文未尾的附录）
 所以，要决定Facebook的专利责任，我们需要评估Facebook的专利及其权利主张，而不是技术规格说明。具体来说，要明确Facebook对于React这个底层技术的专利权利主张是什么？但是作者搜了一下，发现什么也没有找到。也就是说，对于USPTO（美国专利商标局）或法院来说，他们没办法对Facebook的这样没有为React申请专利的方式来执行任何和专利的诉讼，也就是说，Facebook的这个React License的条款，美国政府是无法在法律上支持的。
 第二个问题是专利损害。就算是Facebook可以评估出来一个合法可执行的专利来保护React，对于专利损害也是很有问题的。作者说他到目前还没有发现一个开源软件被专利侵权的事，就算有这样的案例，也不会是这里说的这个事。作者觉得在这个事上操作起来就是一个笑话。
@@ -1340,8 +1340,8 @@ Patent Liability &amp;#8211; 专利的责任和损害是两件事，非专业人
 最后，请允许我调侃一下来结束本文——“不用担心React的许可证问题，因为前端不是一年半就用新的框架重写一次么？”哈哈。
 更新：Facebook官方于20017年9月23日在其官方blog上发贴《Relicensing React, Jest, Flow, and Immutable.js》决定取消之前的带专利的许可证。
 延伸阅读
-马克曼听证会 &amp;#8211; Markman Hearing
-马克曼听证会的一些背景知识，下面的文字来源于《&amp;#8220;马克曼听证&amp;#8221;制度的由来及启示》
+马克曼听证会  Markman Hearing
+马克曼听证会的一些背景知识，下面的文字来源于《制度的由来及启示》
 与美国专利诉讼的悠长历史相比，1996年才经美国最高法院确立的“马克曼听证”（Markman Hearing，也称为Claim Construction，即权利要求书的解释）无疑是一项年轻的制度。但由于几乎所有的专利侵权诉讼中都会遇到涉案专利权利要求书的解释这一核心问题，且因“马克曼听证”结果往往清楚地预示了案件结果，经“马克曼听证”获得有利结论的一方一旦据此向法庭提起不审即判的动议，专利侵权诉讼往往可就此快速了结，因此该制度的确立成为美国专利诉讼历史上的一件大事。
 “马克曼听证”制度的由来
 “马克曼听证”制度确立之前，在专利侵权诉讼中的权利要求书解释，通常交由陪审团在对案件事实进行裁决时一并做出，且并不会在诉讼文件上单独就陪审团这一问题的判断进行记录。1991年，马克曼（Markman）先生因认为其拥有的专利号为RE33054的“干洗衣物贮存及追踪控制装置”专利权被Westview公司所侵犯，遂向宾夕法尼亚州东区联邦地方法院提起了专利侵权诉讼。
@@ -1350,12 +1350,12 @@ Patent Liability &amp;#8211; 专利的责任和损害是两件事，非专业人
 马克曼不服，向最高法院提出上诉。1996年4月23日，美国最高法院就马克曼诉Westview器械公司案（Markman v. Westview Instruments, Inc. 517 U.S. 370 （1996））做出终审裁决，裁决认定：权利要求书的解释是联邦地区法院法官应当处理的法律问题，而不是应当由陪审团来认定的事实问题，尽管在解释权利要求书的过程中可能会包含一些对于事实问题的解释，且这样做并不违反第七修正案赋予给陪审团的权利。这一裁决标志着“马克曼听证”制度的正式确立。
 “马克曼听证”制度的不足
 该案判决是美国专利诉讼史上的一个重大转折。“马克曼听证”成为法官专门用于解释专利权利要求的一个经常性听证程序，用以解决专利侵权诉讼的核心问题。由于该听证并非普遍适用，因此，十几年来，联邦民事诉讼规则并未正式对其有任何规定，而是给予法院绝对的自由裁量权。但是，何时可以进行“马克曼听证”?如何进行?是否有必要进行?类似问题在一定程度上困扰了审理专利侵权案件较多的法院。
-2001年，加州北区联邦地区法院率先制定了供本法院使用的专利审判专属规则（Patent Local Rules），其中第四部分即为权利要求书的解释程序（Claim Construction Proceddings），对“马克曼听证”的时间、流程、限制及当事人的义务均进行了规定。此后，各州纷纷效仿。目前，乔治亚州北区联邦法院、得克萨斯州东区联邦法院、得克萨斯州南区联邦法院、宾夕法尼亚州西区联邦法院等都制订了书面的“马克曼听证”程序指南。近年来，不断有新的案例在解释与细化着“马克曼听证”，如2006年的Wilson Sporting Goods Co.诉Hillerich &amp;amp; Bradsby Co.案，2005年的Phillips诉AWH Corp.案，2008年的Howmedica Osteonics Corp.诉Wright Medical Technology, Inc.案，这些司法实践大大拓展与丰富了“马克曼听证”使用的实体和程序规则，使之日渐成为美国专利诉讼中一个复杂、完备的司法程序。以至于竟然有人开发了模拟“马克曼听证”程序，只要你愿意，可以下载并训练，以熟悉和确保有真正的权利要求书解释时不会出现不利于自己的问题。
+2001年，加州北区联邦地区法院率先制定了供本法院使用的专利审判专属规则（Patent Local Rules），其中第四部分即为权利要求书的解释程序（Claim Construction Proceddings），对“马克曼听证”的时间、流程、限制及当事人的义务均进行了规定。此后，各州纷纷效仿。目前，乔治亚州北区联邦法院、得克萨斯州东区联邦法院、得克萨斯州南区联邦法院、宾夕法尼亚州西区联邦法院等都制订了书面的“马克曼听证”程序指南。近年来，不断有新的案例在解释与细化着“马克曼听证”，如2006年的Wilson Sporting Goods Co.诉Hillerich  Bradsby Co.案，2005年的Phillips诉AWH Corp.案，2008年的Howmedica Osteonics Corp.诉Wright Medical Technology, Inc.案，这些司法实践大大拓展与丰富了“马克曼听证”使用的实体和程序规则，使之日渐成为美国专利诉讼中一个复杂、完备的司法程序。以至于竟然有人开发了模拟“马克曼听证”程序，只要你愿意，可以下载并训练，以熟悉和确保有真正的权利要求书解释时不会出现不利于自己的问题。
 但是，该听证带来的问题也逐渐受到重视。有人质疑说该程序导致专利诉讼费用增加，因为“马克曼听证”通常会单独进行，且程序复杂，因此导致当事人花费大量的时间与精力，更为重要的是，由于40%至60%的联邦地区法院案件会在联邦巡回上诉法院被推翻，因此，花费巨大的“马克曼听证”似乎价值有限。同时，权利要求书的解释要求是不多不少，忠实于技术发明思想与发明事实，但由于地区法院分散，法官的相关技术知识不十分专业，将权利要求书解释这样的问题交给他们，难免会带来一些无法克服的问题。
 “马克曼听证”制度的启示
 我国民事诉讼中并无陪审团制度，案件的事实问题与法律问题均由法官审理与确定。在专利侵权诉讼中，对于案件中涉及到的技术问题可以通过专家鉴定等方式解决，但并不因此免除法官审理案件的义务，即法律问题的判断归于法官，事实的法律属性判断仍然归于法官。同时，权利要求书的解释在我国的专利侵权诉讼中并不是一个单独的程序，而是合并在案件审理过程中。因此，仅就我国的司法审判而言，“马克曼听证”制度并无直接的借鉴意义。
 但是，对于那些已经走出和正在走出国门的企业来说，了解与掌握这一重要的专利诉讼程序却是极其重要的。通领科技集团的积极尝试充分证明了这一点，而且随着这一程序的不断成熟，美国国际贸易法院（ITC）也开始在审理时适用“马克曼听证”制度。所以，知道“马克曼听证”意味着什么，确保所提交的用于解释权利要求的文件确实充分，学会利用“马克曼听证”，无论是对于破解美国的专利诉讼威胁，还是为未来准备有效的法律武器，无疑都非常重要。（知识产权报　作者　魏玮）
-&amp;nbsp;
+
 （全文完）&lt;!--
 
 
@@ -1363,7 +1363,7 @@ Patent Liability &amp;#8211; 专利的责任和损害是两件事，非专业人
  --&gt;
  关注CoolShell微信公众账号和微信小程序
 
-（转载本站文章请注明作者和出处 酷 壳 &amp;#8211; CoolShell ，请勿用于任何商业用途）
+（转载本站文章请注明作者和出处 酷 壳  CoolShell ，请勿用于任何商业用途）
 ——=== 访问 酷壳404页面 寻找遗失儿童。 ===——
 
 相关文章扎克伯格的一封信：关于Facebook IPOQuora使用到的技术程序员练级攻略（2018)  与我的专栏Facebook 的系统架构Facebook全球关系网AWS 的 S3 故障回顾和思考
@@ -1375,15 +1375,15 @@ Patent Liability &amp;#8211; 专利的责任和损害是两件事，非专业人
         <link>https://coolshell.cn/articles/18094.html</link>
         <description>今天，我把CoolShell变成https的安全访问了。我承认这件事有点晚了，因为之前的HTTP的问题也有网友告诉我，被国内的电信运营商在访问我的网站时加入了一... Read More  Read More</description>
         <content>今天，我把CoolShell变成https的安全访问了。我承认这件事有点晚了，因为之前的HTTP的问题也有网友告诉我，被国内的电信运营商在访问我的网站时加入了一些弹窗广告。另外，HTTP的网站在搜索引擎中的rank会更低。所以，这事早就应该干了。现在用HTTP访问CoolShell会被得到一个 301 的HTTPS的跳转。下面我分享一下启用HTTPS的过程。
-我用的是 Let&amp;#8217;s Encrypt这个免费的解决方案。Let&amp;#8217;s Encrypt 是一个于2015年推出的数字证书认证机构，将通过旨在消除当前手动创建和安装证书的复杂过程的自动化流程，为安全网站提供免费的SSL/TLS证书。这是由互联网安全研究小组（ISRG &amp;#8211; Internet Security Research Group，一个公益组织）提供的服务。主要赞助商包括电子前哨基金会，Mozilla基金会，Akamai以及Cisco等公司（赞助商列表）。
-2015年6月，Let&amp;#8217;s Encrypt得到了一个存储在硬件安全模块中的离线的RSA根证书。这个由IdenTrust证书签发机构交叉签名的根证书被用于签署两个证书。其中一个就是用于签发请求的证书，另一个则是保存在本地的证书，这个证书用于在上一个证书出问题时作备份证书之用。因为IdenTrust的CA根证书目前已被预置于主流浏览器中，所以Let&amp;#8217;s Encrypt签发的证书可以从项目开始就被识别并接受，甚至当用户的浏览器中没有信任ISRG的根证书时也可以。
+我用的是 Let Internet Security Research Group，一个公益组织）提供的服务。主要赞助商包括电子前哨基金会，Mozilla基金会，Akamai以及Cisco等公司（赞助商列表）。
+2015年6月，Lets Encrypt签发的证书可以从项目开始就被识别并接受，甚至当用户的浏览器中没有信任ISRG的根证书时也可以。
 
-以上介绍文字来自 Wikipedia 的 Let&amp;#8217;s Encrypt 词条。
+以上介绍文字来自 Wikipedia 的 Lets Encrypt 词条。
 为你的网站来安装一个证书十分简单，只需要使用电子子前哨基金会EFF的 Certbot，就可以完成。
 1）首先，打开 https://certbot.eff.org 网页。
 2）在那个机器上图标下面，你需要选择一下你用的 Web 接入软件 和你的 操作系统。比如，我选的，nginx 和 Ubuntu 14.04
 3）然后就会跳转到一个安装教程网页。你就照着做一遍就好了。
-以Coolshell.cn为例 &amp;#8211; Nginx + Ubuntu
+以Coolshell.cn为例  Nginx + Ubuntu
 首先先安装相应的环境：
 
 $ sudo apt-get update
@@ -1404,17 +1404,17 @@ ssl_certificate_key /etc/letsencrypt/live/coolshell.cn/privkey.pem; # managed by
 include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
 和
  # Redirect non-https traffic to https
-if ($scheme != &amp;quot;https&amp;quot;) {
+if ($scheme != ) {
   return 301 https://$host$request_uri;
 } # managed by Certbot
-&amp;nbsp;
+
 这里建议配置 http2，这要求 Nginx 版本要大于 1.9.5。HTTP2 具有更快的 HTTPS 传输性能，非常值得开启（关于性能你可以看一下这篇文章）。需要开启HTTP/2其实很简单，只需要在 nginx.conf 的 listen 443 ssl; 后面加上 http2 就好了。如下所示：
 listen 443 ssl http2; # managed by Certbot 
 ssl_certificate /etc/letsencrypt/live/coolshell.cn/fullchain.pem; # managed by Certbot 
 ssl_certificate_key /etc/letsencrypt/live/coolshell.cn/privkey.pem; # managed by Certbot 
 include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
 然后，就 nginx -s reload 就好了。
-但是，Let&amp;#8217;s Encrypt 的证书90天就过期了，所以，你还要设置上自动化的更新脚本，最容易的莫过于使用 crontab 了。使用 crontab -e 命令加入如下的定时作业（每个月都强制更新一下）：
+但是，Lets Encrypt 的证书90天就过期了，所以，你还要设置上自动化的更新脚本，最容易的莫过于使用 crontab 了。使用 crontab -e 命令加入如下的定时作业（每个月都强制更新一下）：
 0 0 1 * * /usr/bin/certbot renew --force-renewal
 5 0 1 * * /usr/sbin/service nginx restart
 当然，你也可以每天凌晨1点检查一下：
@@ -1426,7 +1426,7 @@ include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
 第3个字段：日期 (1-31)
 第4个字段：月份 (1-12 [12 代表 December])
 第5个字段：一周当中的某天 (0-7 [7 或 0 代表星期天])
-/path/to/command &amp;#8211; 计划执行的脚本或命令的名称
+/path/to/command  计划执行的脚本或命令的名称
 
 这么方便的同时，我不禁要问，如果是一些恶意的钓鱼网站也让自己的站点变成https的，这个对于一般用来说就有点难以防范了。哎……
 当然，在nginx或apache上启用HTTPS后，还没有结束。因为你可能还需要修改一下你的网站，不然你的网站在浏览时会出现各种问题。
@@ -1444,7 +1444,7 @@ include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
  --&gt;
  关注CoolShell微信公众账号和微信小程序
 
-（转载本站文章请注明作者和出处 酷 壳 &amp;#8211; CoolShell ，请勿用于任何商业用途）
+（转载本站文章请注明作者和出处 酷 壳  CoolShell ，请勿用于任何商业用途）
 ——=== 访问 酷壳404页面 寻找遗失儿童。 ===——
 
 相关文章从“黑掉Github”学Web安全开发关于移动端的钓鱼式攻击HTTP API 认证授权术你会做Web上的用户登录功能吗？Web工程师的工具箱bash代码注入的安全漏洞
@@ -1456,13 +1456,13 @@ include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
         <link>https://coolshell.cn/articles/18024.html</link>
         <description>（感谢好友 @李鼎 翻译此文） 原文链接：API Design Principles &amp;#8211; Qt Wiki 基于Gary的影响力上 Gary Gao ... Read More  Read More</description>
         <content>（感谢好友 @李鼎 翻译此文）
-原文链接：API Design Principles &amp;#8211; Qt Wiki
+原文链接：API Design Principles  Qt Wiki
 基于Gary的影响力上 Gary Gao 的译文稿：C++的API设计指导
 译序
 
 Qt的设计水准在业界很有口碑，一致、易于掌握和强大的API是Qt最著名的优点之一。此文既是Qt官网上的API设计指导准则，也是Qt在API设计上的实践总结。虽然Qt用的是C++，但其中设计原则和思考是具有普适性的（如果你对C++还不精通，可以忽略与C++强相关或是过于细节的部分，仍然可以学习或梳理关于API设计最有价值的内容）。整个篇幅中有很多示例，是关于API设计一篇难得的好文章。
 需要注意的是，这篇Wiki有一些内容并不完整，所以，可能会有一些阅读上的问题，我们对此做了一些相关的注释。
-PS：翻译中肯定会有不足和不对之处，欢迎评论&amp;amp;交流；另译文源码在GitHub的这个仓库中，可以提交Issue/Fork后提交代码来建议/指正。
+PS：翻译中肯定会有不足和不对之处，欢迎评论交流；另译文源码在GitHub的这个仓库中，可以提交Issue/Fork后提交代码来建议/指正。
 API设计原则
 一致、易于掌握和强大的API是Qt最著名的优点之一。此文总结了我们在设计Qt风格API的过程中所积累的诀窍（know-how）。其中许多是通用准则；而其他的则更偏向于约定，遵循这些约定主要是为了与已有的API保持一致。
 虽然这些准则主要用于对外的API（public API），但在设计对内的API（private API）时也推荐遵循相同的技巧（techniques），作为开发者之间协作的礼仪（courtesy）。
@@ -1493,7 +1493,7 @@ QDialogButtonBox与QMessageBox，在处理按钮（addButton()、setStandardButt
 2.2 差的案例
 QTcpSocket与QUdpSocket都继承了QAbstractSocket，这两个类的交互行为的模式（mode of interaction）非常不同。似乎没有什么人以通用和有意义的方式用过QAbstractSocket指针（或者 能 以通用和有意义的方式使用QAbstractSocket指针）。
 2.3 值得斟酌的案例
-QBoxLayout是QHBoxLayout与QVBoxLayout的父类。好处：可以在工具栏上使用QBoxLayout，调用setOrientation()使其变为水平/垂直。坏处：要多一个类，并且有可能导致用户写出这样没什么意义的代码，((QBoxLayout *)hbox)-&amp;gt;setOrientation(Qt::Vertical)。
+QBoxLayout是QHBoxLayout与QVBoxLayout的父类。好处：可以在工具栏上使用QBoxLayout，调用setOrientation()使其变为水平/垂直。坏处：要多一个类，并且有可能导致用户写出这样没什么意义的代码，((QBoxLayout *)hbox)-setOrientation(Qt::Vertical)。
 3. 基于属性的API
 新的Qt类倾向于用『基于属性（property）的API』，例如：
 
@@ -1518,18 +1518,18 @@ timer.start(1000)；
 
 QRegExp regExp;
 regExp.setCaseSensitive(Qt::CaseInsensitive);
-regExp.setPattern(&amp;quot;.&amp;quot;);
+regExp.setPattern(
 regExp.setPatternSyntax(Qt::WildcardSyntax);
 
 为实现这种类型的API，需要借助底层对象的懒创建。例如，对于QRegExp的例子，在不知道模式语法（pattern syntax）的情况下，在setPattern()中去解释"."就为时过早了。
 属性之间常常有关联的；在这种情况下，我们必须小心处理。思考下面的问题：当前的风格（style）提供了『默认的图标尺寸』属性 vs. QToolButton的『iconSize』属性：
 
-toolButton-&amp;gt;setStyle(otherStyle);
-toolButton-&amp;gt;iconSize();    // returns the default for otherStyle
-toolButton-&amp;gt;setIconSize(QSize(52, 52));
-toolButton-&amp;gt;iconSize();    // returns (52, 52)
-toolButton-&amp;gt;setStyle(yetAnotherStyle);
-toolButton-&amp;gt;iconSize();    // returns (52, 52)
+toolButton-
+toolButton-    // returns the default for otherStyle
+toolButton-
+toolButton-    // returns (52, 52)
+toolButton-
+toolButton-    // returns (52, 52)
 
 提醒一下，一旦设置了iconSize，设置就会一直保持，即使改变当前的风格。这 很好。但有的时候需要能重置属性。有两种方法：
 
@@ -1537,18 +1537,18 @@ toolButton-&amp;gt;iconSize();    // returns (52, 52)
 提供一个明确的重置方法，如resetFoo()和unsetFoo()
 
 对于iconSize，使用QSize()（比如 QSize(–1, -1)）来表示『重置』就够用了。
-在某些情况下，getter方法返回的结果与所设置的值不同。例如，虽然调用了widget-&amp;gt;setEnabled(true)，但如果它的父widget处于disabled状态，那么widget-&amp;gt;isEnabled()仍然返回的是false。这样是OK的，因为一般来说就是我们想要的检查结果（父widget处于disabled状态，里面的子widget也应该变为灰的不响应用户操作，就好像子widget自身处于disabled状态一样；与此同时，因为子widget记得在自己的内心深处是enabled状态的，只是一直等待着它的父widget变为enabled）。当然诸如这些都必须在文档中妥善地说明清楚。
+在某些情况下，getter方法返回的结果与所设置的值不同。例如，虽然调用了widget-isEnabled()仍然返回的是false。这样是OK的，因为一般来说就是我们想要的检查结果（父widget处于disabled状态，里面的子widget也应该变为灰的不响应用户操作，就好像子widget自身处于disabled状态一样；与此同时，因为子widget记得在自己的内心深处是enabled状态的，只是一直等待着它的父widget变为enabled）。当然诸如这些都必须在文档中妥善地说明清楚。
 4. C++相关
 4.1 值 vs. 对象
 4.1.1 指针 vs. 引用
 指针（pointer）还是引用（reference）哪个是最好的输出参数（out-parameters）？
 
 void getHsv(int *h, int *s, int *v) const;
-void getHsv(int &amp;amp;h, int &amp;amp;s, int &amp;amp;v) const;
+void getHsv(int 
 
 大多数C++书籍推荐尽可能使用引用，基于一个普遍的观点：引用比指针『更加安全和优雅』。与此相反，我们在开发Qt时倾向于指针，因为指针让用户代码可读性更好。比较下面例子：
 
-color.getHsv(&amp;amp;h, &amp;amp;s, &amp;amp;v);
+color.getHsv(
 color.getHsv(h, s, v);
 
 只有第一行代码清楚表达出h、s、v参数在函数调用中非常有可能会被修改。
@@ -1557,7 +1557,7 @@ color.getHsv(h, s, v);
 struct Hsv { int hue, saturation, value };
 Hsv getHsv() const;
 
-【译注】：函数的『入参』和『出参』的混用会导致 API 接口语义的混乱，所以，使用指针，在调用的时候，实参需要加上“&amp;amp;”，这样在代码阅读的时候，可以看到是一个『出参』，有利于代码阅读。（但是这样做，在函数内就需要判断指针是否为空的情况，因为引用是不需要判断的，所以，这是一种 trade-off）
+【译注】：函数的『入参』和『出参』的混用会导致 API 接口语义的混乱，所以，使用指针，在调用的时候，实参需要加上“”，这样在代码阅读的时候，可以看到是一个『出参』，有利于代码阅读。（但是这样做，在函数内就需要判断指针是否为空的情况，因为引用是不需要判断的，所以，这是一种 trade-off）
 另外，如果这样的参数过多的话，最好使用一个结构体来把数据打包，一方面，为一组返回值取个名字，另一方面，这样有利用接口的简单。
 4.1.2 按常量引用传参 vs. 按值传参
 如果类型大于16字节，按常量引用传参。
@@ -1570,7 +1570,7 @@ void setCategory(QChar cat);
 void setName(QLatin1String name);
 
 // const-ref is much faster than running copy-constructor and destructor
-void setAlarm(const QSharedPointer&amp;lt;Alarm&amp;gt; &amp;amp;alarm);
+void setAlarm(const QSharedPointer
 
 // QDate, QTime, QPoint, QPointF, QSize, QSizeF, QRect
 // are good examples of other classes you should pass by value.
@@ -1584,12 +1584,12 @@ virtual void resetFormat();
 virtual void setUndoDepth( int d );
 virtual void setFormat( QTextFormat *f, int flags );
 virtual void ensureCursorVisible();
-virtual void placeCursor( const QPoint &amp;amp;pos;, QTextCursor **c = 0 );
+virtual void placeCursor( const QPoint 
 virtual void moveCursor( CursorAction action, bool select );
 virtual void doKeyboardAction( KeyboardAction action );
 virtual void removeSelectedText( int selNum = 0 );
 virtual void removeSelection( int selNum = 0 );
-virtual void setCurrentFont( const QFont &amp;amp;f );
+virtual void setCurrentFont( const QFont 
 virtual void setOverwriteMode( bool b ) { overWrite = b; }
 
 QTextEdit从Qt 3移植到Qt 4的时候，几乎所有的虚函数都被移除了。有趣的是（但在预料之中），并没有人对此有大的抱怨，为什么？因为Qt 3没用到QTextEdit的多态行为 —— 只有你会；简单地说，没有理由去继承QTextEdit并重写这些函数，除非你自己调用了这些方法。如果在Qt在外部你的应用程序你需要多态，你可以自己添加多态。
@@ -1626,11 +1626,11 @@ QTextEdit从Qt 3移植到Qt 4的时候，几乎所有的虚函数都被移除了
 class CopyClass {
 public:
     CopyClass();
-    CopyClass(const CopyClass &amp;amp;other);
+    CopyClass(const CopyClass 
     ~CopyClass();
-    CopyClass &amp;amp;operator =(const CopyClass &amp;amp;other);
-    bool operator ==(const CopyClass &amp;amp;other) const;
-    bool operator !=(const CopyClass &amp;amp;other) const;
+    CopyClass 
+    bool operator ==(const CopyClass 
+    bool operator !=(const CopyClass 
 
     virtual void setValue(int v);
 };
@@ -1639,7 +1639,7 @@ public:
 
 class OtherClass {
 public:
-    const CopyClass &amp;amp;instance() const; // 这个方法返回的是什么？可以赋值什么？
+    const CopyClass  // 这个方法返回的是什么？可以赋值什么？
 };
 
 （这部份还未完成）
@@ -1655,24 +1655,24 @@ C++的关键词const表明了内容不会改变或是没有副作用。可以应
 
 bool QWidget::isVisibleTo(QWidget *ancestor) const;
 bool QWidget::isEnabledTo(QWidget *ancestor) const;
-QPoint QWidget::mapFrom(QWidget *ancestor, const QPoint &amp;amp;pos) const;
+QPoint QWidget::mapFrom(QWidget *ancestor, const QPoint 
 
 QWidget声明了许多非const指针输入参数的const成员函数。注意，这些函数可以修改传入的参数，不能修改对象自己。使用这样的函数常常要借助const_cast转换。如果是const指针输入参数，就可以避免这样的转换了。
 之后：
 
 bool QWidget::isVisibleTo(const QWidget *ancestor) const;
 bool QWidget::isEnabledTo(const QWidget *ancestor) const;
-QPoint QWidget::mapFrom(const QWidget *ancestor, const QPoint &amp;amp;pos) const;
+QPoint QWidget::mapFrom(const QWidget *ancestor, const QPoint 
 
 注意，我们在QGraphicsItem中对此做了修正，但是QWidget要等到Qt 5:
 
 bool isVisibleTo(const QGraphicsItem *parent) const;
-QPointF mapFromItem (const QGraphicsItem *item, const QPointF &amp;amp;point) const;
+QPointF mapFromItem (const QGraphicsItem *item, const QPointF 
 
 4.3.2 返回值：const值
 调用函数返回的非引用类型的结果，称之为右值（R-value）。
 非类（non-class）的右值总是无cv限定类型（cv-unqualified type）。虽然从语法上讲，加上const也可以，但是没什么意义，因为鉴于访问权限这些值是不能改变的。多数现代编译器在编译这样的代码时会提示警告信息。
-【译注】：cv-qualified的类型（与cv-unqualified相反）是由const或者volatile或者volatile const限定的类型。详见cv (const and volatile) type qualifiers &amp;#8211; C++语言参考
+【译注】：cv-qualified的类型（与cv-unqualified相反）是由const或者volatile或者volatile const限定的类型。详见cv (const and volatile) type qualifiers  C++语言参考
 当在类类型（class type）右值上添加const关键字，则禁止访问非const成员函数以及对成员的直接操作。
 不加const则没有以上的限制，但几乎没有必要加上const，因为右值对象生存时间（life time）的结束一般在C++清理的时候（通俗的说，下一个分号地方），而对右值对象的修改随着右值对象的生存时间也一起结束了（也就是本条语句的执行完成的时候）。
 示例：
@@ -1717,7 +1717,7 @@ int main() {
 
 QVariant CustomWidget::inputMethodQuery(Qt::InputMethodQuery query) const {
     moveBy(10, 10); // doesn't compile!
-    window()-&amp;gt;childAt(mapTo(window(), rect().center()))-&amp;gt;moveBy(10, 10); // compiles!
+    window()- // compiles!
 }
 
 返回const指针的函数正是保护以避免这些（可能是不期望的/没有预料到的）副作用，至少是在一定程度上。但哪个函数你会觉得更想返回const指针，或是不止一个函数？
@@ -1727,25 +1727,25 @@ QGraphicsScene scene;
 // … populate scene
 
 foreach (const QGraphicsItem *item, scene.items()) {
-    item-&amp;gt;setPos(qrand() % 500, qrand() % 500); // doesn't compile! item is a const pointer
+    item- // doesn't compile! item is a const pointer
 }
 
 QGraphicsScene::items()是一个const函数，顺着思考看起来这个函数只应该返回const指针。
 在Qt中，我们几乎只有非const的使用模式。我们选择的是实用路子： 相比滥用非const指针返回类型带来的问题，返回const指针更可能招致过分使用const_cast的问题。
 4.3.4 返回值：按值返回 还是 按const引用返回？
-若返回的是对象的拷贝，那么返回const引用是更直接的方案； 然而，这样的做法限制了后面想要对这个类的重构（refactor）。 （以d-point的典型做法（idiom）为例，我们可以在任何时候改变Qt类在内存表示（memory representation）；但却不能在不破坏二进制兼容性的情况下把改变函数的签名，返回值从const QFoo &amp;amp;变为QFoo。） 基于这个原因，除去对运行速度敏感（speed is critical）而重构不是问题的个别情形（例如，QList::at()），我们一般返回QFoo而不是const QFoo &amp;amp;。
-【译注】：参看《Effective C++》中条款23：Don&amp;#8217;t try to return a reference when you must return an object
+若返回的是对象的拷贝，那么返回const引用是更直接的方案； 然而，这样的做法限制了后面想要对这个类的重构（refactor）。 （以d-point的典型做法（idiom）为例，我们可以在任何时候改变Qt类在内存表示（memory representation）；但却不能在不破坏二进制兼容性的情况下把改变函数的签名，返回值从const QFoo 。
+【译注】：参看《Effective C++》中条款23：Dont try to return a reference when you must return an object
 4.4.5 const vs. 对象的状态
 const正确性（Const correctness）的问题就像C圈子中vi与emacs的讨论，因为这个话题在很多地方都存在分歧（比如基于指针的函数）。
 但通用准则是const函数不能改变类的可见状态。『状态』的意思是『自身以及涉及的职责』。这并不是指非const函数能够改变自身的私有成员，也不是指const函数改变不了。而是指函数是活跃的并存在可见的副作用（visible side effects）。const函数一般没有任何可见的副作用，比如：
 
-QSize size = widget-&amp;gt;sizeHint(); // const
-widget-&amp;gt;move(10, 10); // not const
+QSize size = widget- // const
+widget- // not const
 
 代理（delegate）负责在其它对象上绘制内容。 它的状态包括它的职责，因此包括在哪个对象做绘制这样的状态。 调用它的绘画行为必然会有副作用； 它改变了它绘制所在设备的外观（及其所关联的状态）。鉴于这些，paint()作为const函数并不合理。 进一步说，任何paint()或QIcon的paint()的视图函数是const函数也不合理。 没有人会从内部的const函数去调用QIcon::paint()，除非他想显式地绕开const这个特性。 如果是这种情况，使用const_cast会更好。
 
 // QAbstractItemDelegate::paint is const
-void QAbstractItemDelegate::paint(QPainter **painter, const QStyleOptionViewItem &amp;amp;option, const QModelIndex &amp;amp;index) const
+void QAbstractItemDelegate::paint(QPainter **painter, const QStyleOptionViewItem index) const
 
 // QGraphicsItem::paint is not const
 void QGraphicsItem::paint(QPainter *painter, const QStyleOptionGraphicsItem option, QWidget *widget)
@@ -1787,8 +1787,8 @@ namespace Qt
     ...
 };
 
-tabWidget-&amp;gt;setCornerWidget(widget, Qt::TopLeft);
-str.indexOf(&amp;quot;$(QTDIR)&amp;quot;, Qt::Insensitive);
+tabWidget-
+str.indexOf(
 
 在最后一行，Insensitive是什么意思？命名枚举类型的一个准则是在枚举值中至少重复此枚举类型名中的一个元素：
 
@@ -1799,19 +1799,19 @@ namespace Qt
     ...
 };
 
-tabWidget-&amp;gt;setCornerWidget(widget, Qt::TopLeftCorner);
-str.indexOf(&amp;quot;$(QTDIR)&amp;quot;, Qt::CaseInsensitive);
+tabWidget-
+str.indexOf(
 
 当对枚举值进行或运算并作为某种标志（flag）时，传统的做法是把或运算的结果保存在int型的值中，但这不是类型安全的。Qt 4提供了一个模板类QFlags，其中的T是枚举类型。为了方便使用，Qt用typedef重新定义了QFlag类型，所以可以用Qt::Alignment代替QFlags。
 习惯上，枚举类型命名用单数形式（因为它一次只能『持有』一个flag），而持有多个『flag』的类型用复数形式，例如：
 
 enum RectangleEdge { LeftEdge, RightEdge, ... };
-typedef QFlags&amp;lt;RectangleEdge&amp;gt; RectangleEdges;
+typedef QFlags
 
 在某些情形下，持有多个『flag』的类型命名用单数形式。对于这种情况，持有的枚举类型名称要求是以Flag为后缀：
 
 enum AlignmentFlag { AlignLeft, AlignTop, ... };
-typedef QFlags&amp;lt;AlignmentFlag&amp;gt; Alignment;
+typedef QFlags
 
 6.4 函数和参数的命名
 函数命名的第一准则是可以从函数名看出来此函数是否有副作用。在Qt 3中，const函数QString::simplifyWhiteSpace()违反了此准则，因为它返回了一个QString而不是按名称暗示的那样，改变调用它的QString对象。在Qt 4中，此函数重命名为QString::simplified()。
@@ -1858,44 +1858,44 @@ setter的名字由getter衍生，去掉了前缀后在前面加上了set；例�
 7.1 简化的陷阱
 一个常见的误解是：实现需要写的代码越少，API就设计得越好。应该记住：代码只会写上几次，却要被反复阅读并理解。例如：
 
-QSlider *slider = new QSlider(12, 18, 3, 13, Qt::Vertical, 0, &amp;quot;volume&amp;quot;);
+QSlider *slider = new QSlider(12, 18, 3, 13, Qt::Vertical, 0, 
 
 这段代码比下面的读起来要难得多（甚至写起来也更难）：
 
 QSlider *slider = new QSlider(Qt::Vertical);
-slider-&amp;gt;setRange(12, 18);
-slider-&amp;gt;setPageStep(3);
-slider-&amp;gt;setValue(13);
-slider-&amp;gt;setObjectName(&amp;quot;volume&amp;quot;);
+slider-
+slider-
+slider-
+slider-
 
 【译注】：在有IDE的自动提示的支持下，后者写起来非常方便，而前者还需要看相应的文档。
 7.2 布尔参数的陷阱
 布尔类型的参数总是带来无法阅读的代码。给现有的函数增加一个bool型的参数几乎永远是一种错误的行为。仍以Qt为例，repaint()有一个bool类型的可选参数用于指定背景是否被擦除。可以写出这样的代码：
 
-widget-&amp;gt;repaint(false);
+widget-
 
 初学者很可能是这样理解的，『不要重新绘制！』，能有多少Qt用户真心知道下面3行是什么意思：
 
-widget-&amp;gt;repaint();
-widget-&amp;gt;repaint(true);
-widget-&amp;gt;repaint(false);
+widget-
+widget-
+widget-
 
 更好的API设计应该是这样的：
 
-widget-&amp;gt;repaint();
-widget-&amp;gt;repaintWithoutErasing();
+widget-
+widget-
 
 在Qt 4中，我们通过移除了重新绘制（repaint）而不擦除widget的能力来解决了此问题。Qt 4的双缓冲使这种特性被废弃。
 还有更多的例子：
 
-widget-&amp;gt;setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Expanding, true);
-textEdit-&amp;gt;insert(&amp;quot;Where's Waldo?&amp;quot;, true, true, false);
-QRegExp rx(&amp;quot;moc_***.c??&amp;quot;, false, true);
+widget-
+textEdit-
+QRegExp rx(
 
 一个明显的解决方案是bool类型改成枚举类型。我们在Qt 4的QString中就是这么做的。对比效果如下：
 
-str.replace(&amp;quot;%USER%&amp;quot;, user, false);               // Qt 3
-str.replace(&amp;quot;%USER%&amp;quot;, user, Qt::CaseInsensitive); // Qt 4
+str.replace(               // Qt 3
+str.replace( // Qt 4
 
 【译注】：关于这个条目可以看看 CoolShell 这篇文章一些展开的讨论： 千万不要把 BOOL 设计成函数参数。
 8. 案例研究
@@ -1909,7 +1909,7 @@ public:
     int totalSteps() const;
     int progress() const;
 
-    const QString &amp;amp;progressString() const;
+    const QString 
     bool percentageVisible() const;
     void setPercentageVisible(bool);
 
@@ -1926,7 +1926,7 @@ public slots:
     void setProgress(int progress, int totalSteps);
 
 protected:
-    virtual bool setIndicator(QString &amp;amp;progressStr,
+    virtual bool setIndicator(QString progressStr,
                               int progress,
                               int totalSteps);
     ...
@@ -1974,19 +1974,19 @@ signals:
     ...
 };
 
-8.2 QAbstractPrintDialog &amp;amp; QAbstractPageSizeDialog
+8.2 QAbstractPrintDialog  QAbstractPageSizeDialog
 Qt 4.0有2个幽灵类QAbstractPrintDialog和QAbstractPageSizeDialog，作为 QPrintDialog和QPageSizeDialog类的父类。这2个类完全没有用，因为Qt的API没有是QAbstractPrint-或是-PageSizeDialog指针作为参数并执行操作。通过篡改qdoc（Qt文档），我们虽然把这2个类隐藏起来了，却成了无用抽象类的典型案例。
 这不是说，好 的抽象是错的，QPrintDialog应该是需要有个工厂或是其它改变的机制 —— 证据就是它声明中的#ifdef QTOPIA_PRINTDIALOG。
 8.3 QAbstractItemModel
 关于模型/视图（model/view）问题的细节在相应的文档中已经说明得很好了，但作为一个重要的总结这里还需要强调一下：抽象类不应该仅是所有可能子类的并集（union）。这样『合并所有』的父类几乎不可能是一个好的方案。QAbstractItemModel就犯了这个错误 —— 它实际上就是个QTreeOfTablesModel，结果导致了错综复杂（complicated）的API，而这样的API要让 所有本来设计还不错的子类 去继承。
 仅仅增加抽象是不会自动就把API变得更好的。
-8.4 QLayoutIterator &amp;amp; QGLayoutIterator
+8.4 QLayoutIterator  QGLayoutIterator
 在Qt 3，创建自定义的布局类需要同时继承QLayout和QGLayoutIterator（命名中的G是指Generic（通用））。QGLayoutIterator子类的实例指针会包装成QLayoutIterator，这样用户可以像和其它的迭代器（iterator）类一样的方式来使用。通过QLayoutIterator可以写出下面这样的代码：
 
-QLayoutIterator it = layout()-&amp;gt;iterator();
+QLayoutIterator it = layout()-
 QLayoutItem **child;
 while ((child = it.current()) != 0) {
-    if (child-&amp;gt;widget() == myWidget) {
+    if (child-widget() == myWidget) {
         it.takeCurrent();
         return;
     }
@@ -2003,7 +2003,7 @@ Qt 3有一整套类用来把完成增量加载的图片传递给一个动画 —
  --&gt;
  关注CoolShell微信公众账号和微信小程序
 
-（转载本站文章请注明作者和出处 酷 壳 &amp;#8211; CoolShell ，请勿用于任何商业用途）
+（转载本站文章请注明作者和出处 酷 壳  CoolShell ，请勿用于任何商业用途）
 ——=== 访问 酷壳404页面 寻找遗失儿童。 ===——
 
 相关文章从Gitlab误删除数据库想到的关于高可用的系统千万不要把 bool 设计成函数参数Leetcode 编程训练如何写出无法维护的代码一个“蝇量级” C 语言协程库
@@ -2016,7 +2016,7 @@ Qt 3有一整套类用来把完成增量加载的图片传递给一个动画 —
         <description>要说清 Systemd，得先从Linux操作系统的启动说起。Linux 操作系统的启动首先从 BIOS 开始，然后由 Boot Loader 载入内核，并初始化... Read More  Read More</description>
         <content>要说清 Systemd，得先从Linux操作系统的启动说起。Linux 操作系统的启动首先从 BIOS 开始，然后由 Boot Loader 载入内核，并初始化内核。内核初始化的最后一步就是启动 init 进程。这个进程是系统的第一个进程，PID 为 1，又叫超级进程，也叫根进程。它负责产生其他所有用户进程。所有的进程都会被挂在这个进程下，如果这个进程退出了，那么所有的进程都被 kill 。如果一个子进程的父进程退了，那么这个子进程会被挂到 PID 1 下面。（注：PID 0 是内核的一部分，主要用于内进换页，参看：Process identifier）
 SysV Init
-PID 1 这个进程非常特殊，其主要就任务是把整个操作系统带入可操作的状态。比如：启动 UI &amp;#8211; Shell 以便进行人机交互，或者进入 X 图形窗口。传统上，PID 1 和传统的 Unix System V 相兼容的，所以也叫 sysvinit，这是使用得最悠久的 init 实现。Unix System V 于1983年 release。
+PID 1 这个进程非常特殊，其主要就任务是把整个操作系统带入可操作的状态。比如：启动 UI  Shell 以便进行人机交互，或者进入 X 图形窗口。传统上，PID 1 和传统的 Unix System V 相兼容的，所以也叫 sysvinit，这是使用得最悠久的 init 实现。Unix System V 于1983年 release。
 在 sysvint 下，有好几个运行模式，又叫 runlevel。比如：常见的 3 级别指定启动到多用户的字符命令行界面，5 级别指定启起到图形界面，0 表示关机，6 表示重启。其配置在 /etc/inittab 文件中。
 
 与此配套的还有 /etc/init.d/ 和 /etc/rc[X].d，前者存放各种进程的启停脚本（需要按照规范支持 start，stop子命令），后者的 X 表示不同的 runlevel 下相应的后台进程服务，如：/etc/rc3.d 是 runlevel=3 的。 里面的文件主要是 link 到  /etc/init.d/ 里的启停脚本。其中也有一定的命名规范：S 或 K 打头的，后面跟一个数字，然后再跟一个自定义的名字，如：S01rsyslog，S02ssh。S 表示启动，K表示停止，数字表示执行的顺序。
@@ -2052,15 +2052,15 @@ And to start more in parallel.
 
 Socket依赖。如果服务C依赖于服务S的socket，那么就要先启动S，然后再启动C，因为如果C启动时找不到S的Socket，那么C就会失败。systemd 可以帮你在S还没有启动好的时候，建立一个socket，用来接收所有的C的请求和数据，并缓存之，一旦S全部启动完成，把systemd替换好的这个缓存的数据和Socket描述符替换过去。
 
-&amp;nbsp;
+
 
 D-Bus依赖。D-Bus 全称 Desktop Bus，是一个用来在进程间通信的服务。除了用于用户态进程和内核态进程通信，也用于用户态的进程之前。现在，很多的现在的服务进程都用 D-Bus 而不是Socket来通信。比如：NetworkManager 就是通过 D-Bus 和其它服务进程通讯的，也就是说，如果一个进程需要知道网络的状态，那么就必需要通过 D-Bus 通信。D-Bus 支持 “Bus Activation”的特性。也就是说，A要通过 D-Bus 服务和B通讯，但是B没有启动，那么 D-Bus 可以把B起来，在B启动的过程中，D-Bus 帮你缓存数据。systemd 可以帮你利用好这个特性来并行启动 A 和 B。
 
-&amp;nbsp;
+
 
 文件系统依赖。系统启动过程中，文件系统相关的活动是最耗时的，比如挂载文件系统，对文件系统进行磁盘检查（fsck），磁盘配额检查等都是非常耗时的操作。在等待这些工作完成的同时，系统处于空闲状态。那些想使用文件系统的服务似乎必须等待文件系统初始化完成才可以启动。systemd 参考了 autofs 的设计思路，使得依赖文件系统的服务和文件系统本身初始化两者可以并发工作。autofs 可以监测到某个文件系统挂载点真正被访问到的时候才触发挂载操作，这是通过内核 automounter 模块的支持而实现的。比如一个 open() 系统调用作用在某个文件系统上的时候，而这个文件系统尚未执行挂载，此时 open() 调用被内核挂起等待，等到挂载完成后，控制权返回给 open() 系统调用，并正常打开文件。这个过程和 autofs 是相似的。
 
-&amp;nbsp;
+
 下图来自 Lennart 的演讲里的一页PPT，展示了不同 init 系统的启动。
 
 除此之外，systemd 还在启动时管理好了一些下面的事。
@@ -2078,15 +2078,15 @@ D-Bus依赖。D-Bus 全称 Desktop Bus，是一个用来在进程间通信的服
 
 
 
-&amp;nbsp;
+
 
 在上面的这个过程中，服务进程除了两次 fork 外还会 fork 出很多很多的子进程（比如说一些Web服务进程，会根据用户的请求链接来 fork 子进程），这个进程树是相当难以管理的，因为，一旦父进程退出来了，子进程就会被挂到 PID 1下，所以，基本上来说，你无法通过服务进程自已给定的一个pid文件来找到所有的相关进程（这个对开发者的要求太高了），所以，在传统的方式下用脚本启停服务是相当相当的 Buggy 的，因为无法做对所有的服务生出来的子子孙孙做到监控。
 
-&amp;nbsp;
+
 
 为了解决这个问题，upstart 通过变态的 strace 来跟踪进程中的 fork() 和 exec() 或 exit() 等相关的系统调用。这种方法相当笨拙。 systemd 使用了一个非常有意思的玩法来 tracking 服务进程生出来的所有进程，那就是用 cgroup （我在 Docker 的基础技术“cgroup篇”中讲过这个东西）。cgroup主要是用来管理进程组资源配额的事，所以，无论服务如何启动新的子进程，所有的这些相关进程都会同属于一个 cgroup，所以，systemd 只需要简单的去遍历一下相应的 cgroup 的那个虚文件系统目录下的文件，就可以正确的找到所有的相关进程，并将他们一一停止。
 
-&amp;nbsp;
+
 另外，systemd 简化了整个 daemon 开发的过程：
 
 不需要两次 fork()，只需要实现服务本身的主逻辑就可以了。
@@ -2114,14 +2114,14 @@ Systemd 争论和八卦
 这篇契文很长，喜欢八卦的同学可以前往一读。感受一下 Lennart 当时的心态（我觉得能算上是非常平稳了）。
 Linus也在被一媒体问起 systemd 这个事来（参看“Torvalds says he has no strong opinions on systemd”），Linus在采访里说，
 我对 systemd 和 Lennart 的贴子没有什么强烈的想法。虽然，传统的 Unix 设计哲学—— “Do one thing and Do it well”，很不错，而且我们大多数人也实践了这么多年，但是这并不代表所有的真实世界。在历史上，也不只有systemd 这么干过。但是，我个人还是 old-fashioned 的人，至少我喜欢文本式的日志，而不是二进制的日志。但是 systemd 没有必要一定要有这样的品味。哦，我说细节了……
-今天，systemd 占据了几乎所有的主流的 Linux 发行版的默认配置，包括：Arch Linux、CentOS、CoreOS、Debian、Fedora、Megeia、OpenSUSE、RHEL、SUSE企业版和 Ubuntu。而且，对于 CentOS, CoreOS, Fedora, RHEL, SUSE这些发行版来说，不能没有 systemd。（Ubuntu 还有一个不错的wiki &amp;#8211; Systemd for Upstart Users 阐述了如何在两者间切换）
-&amp;nbsp;
+今天，systemd 占据了几乎所有的主流的 Linux 发行版的默认配置，包括：Arch Linux、CentOS、CoreOS、Debian、Fedora、Megeia、OpenSUSE、RHEL、SUSE企业版和 Ubuntu。而且，对于 CentOS, CoreOS, Fedora, RHEL, SUSE这些发行版来说，不能没有 systemd。（Ubuntu 还有一个不错的wiki  Systemd for Upstart Users 阐述了如何在两者间切换）
+
 其它
 还记得在《缓存更新的套路》一文中，我说过，如果你要做好架构，首先你得把计算机体系结构以及很多老古董的基础技术吃透了。因为里面会有很多可以借鉴和相通的东西。那么，你是否从这篇文章里看到了一些有分布式架构相似的东西？
 比如：从 sysvinit 到 upstart 再到 systemd，像不像是服务治理？Linux系统下的这些服务进程，是不是很像分布式架构中的微服务？还有那个D-Bus，是不是很像SOA里的ESB？而 init 系统是不是很像一个控制系统？甚至像一个服务编排（Service Orchestration）系统？
 分布式系统中的服务之间也有很多依赖，所以，在启动一个架构的时候，如果我们可以做到像 systemd 那样并行启动的话，那么是不是就像是一个微服务的玩法了？
 嗯，你会发现，技术上的很多东西是相通的，也是互相有对方的影子，所以，其实技术并不多。关键是我们学在了表面还是看到了本质。
-&amp;nbsp;
+
 延伸阅读
 
 Lennert 的博文：Rethinking PID 1
@@ -2136,7 +2136,7 @@ LinuxVoice：Lennart Poettering 专访
  --&gt;
  关注CoolShell微信公众账号和微信小程序
 
-（转载本站文章请注明作者和出处 酷 壳 &amp;#8211; CoolShell ，请勿用于任何商业用途）
+（转载本站文章请注明作者和出处 酷 壳  CoolShell ，请勿用于任何商业用途）
 ——=== 访问 酷壳404页面 寻找遗失儿童。 ===——
 
 相关文章vfork 挂掉的一个问题Docker基础技术：AUFSDocker基础技术：Linux Namespace（上）Unix传奇(上篇)Docker基础技术：Linux Namespace（下）Docker基础技术：Linux CGroup

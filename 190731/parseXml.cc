@@ -17,14 +17,16 @@ RssReader::RssReader()
 void getMessage(RssItem_t &item, XMLElement *&itemNode)
 {
     std::regex reg1("<.*?>");
+    std::regex reg2("&.*;");
     string temp;
     item.title = itemNode->FirstChildElement("title")->GetText();
     item.link = itemNode->FirstChildElement("link")->GetText();
     temp = itemNode->FirstChildElement("description")->GetText();
-    temp = std::regex_replace(temp, reg1, "");
+    temp = std::regex_replace(temp, reg1, "\0");
     item.description = temp;
     temp = itemNode->FirstChildElement("content:encoded")->GetText();
     temp = std::regex_replace(temp, reg1, "");
+    temp = std::regex_replace(temp, reg2, "");
     item.content = temp;
 }
 
