@@ -20,6 +20,10 @@ using std::string;
 using namespace log4cpp;
 
 #define PRE_ARGS __LINE__, __FILE__, __FUNCTION__
+#define INFO(...) LogInfo(PRE_ARGS, __VA_ARGS__)
+#define WARN(...) LogWarn(PRE_ARGS, __VA_ARGS__)
+#define ERROR(...) LogError(PRE_ARGS, __VA_ARGS__)
+#define DEBUG(...) LogDebug(PRE_ARGS, __VA_ARGS__)
 
 class MyLogger
 {
@@ -103,27 +107,35 @@ void LogInfo(const int & line, const char * fileName ,const char* funcName, Args
     MyLogger *log = MyLogger::getInstance();
     log->info(PrefixedMessage);
 }
-
-void LogWarn(const int & line, const char * fileName ,const char* funcName, const string & message)
+template <typename... Args>
+void LogWarn(const int & line, const char * fileName ,const char* funcName, Args... args)
 {
     char PrefixedMessage[256] = {0};
-    sprintf(PrefixedMessage, "%s(%d)-<%s>: %s", fileName, line, funcName, message.c_str());
+    char message[256] = {0};
+    sprintf(message, args...);
+    sprintf(PrefixedMessage, "%s(%d)-<%s>: %s", fileName, line, funcName, message);
     MyLogger *log = MyLogger::getInstance();
     log->warn(PrefixedMessage);
 }
 
-void LogError(const int & line, const char * fileName ,const char* funcName, const string & message)
+template <typename... Args>
+void LogError(const int & line, const char * fileName ,const char* funcName, Args... args)
 {
     char PrefixedMessage[256] = {0};
-    sprintf(PrefixedMessage, "%s(%d)-<%s>: %s", fileName, line, funcName, message.c_str());
+    char message[256] = {0};
+    sprintf(message, args...);
+    sprintf(PrefixedMessage, "%s(%d)-<%s>: %s", fileName, line, funcName, message);
     MyLogger *log = MyLogger::getInstance();
     log->error(PrefixedMessage);
 }
 
-void LogDebug(const int & line, const char * fileName ,const char* funcName, const string & message)
+template <typename... Args>
+void LogDebug(const int & line, const char * fileName ,const char* funcName, Args... args)
 {
     char PrefixedMessage[256] = {0};
-    sprintf(PrefixedMessage, "%s(%d)-<%s>: %s", fileName, line, funcName, message.c_str());
+    char message[256] = {0};
+    sprintf(message, args...);
+    sprintf(PrefixedMessage, "%s(%d)-<%s>: %s", fileName, line, funcName, message);
     MyLogger *log = MyLogger::getInstance();
     log->debug(PrefixedMessage);
 }
