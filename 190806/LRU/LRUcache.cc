@@ -16,7 +16,8 @@ public:
     int get(int key)
     {
         auto it = _cacheMap.find(key);
-        if(it != _cacheMap.end())
+        cout << key << endl;
+        if (it != _cacheMap.end())
         {
             _cacheList.push_front(_CacheNode(key, _cacheMap[key]));
             if(_cacheList.size() > _capacity)
@@ -35,9 +36,11 @@ public:
     {
         auto it = _cacheMap.find(key);
         struct _CacheNode node(key, value);
+        bool flag = true;
         if (it != _cacheMap.end())
         {
             it->second = value;
+            flag = false;
         }
         else
         {
@@ -48,7 +51,8 @@ public:
         {
             auto e = _cacheList.back();
             _cacheList.pop_back();
-            _cacheMap.erase(e._key);
+            if(flag)
+                _cacheMap.erase(e._key);
         }
         _cacheList.push_front(node);
     }
@@ -60,6 +64,12 @@ public:
             cout << e._key << " , " << e._value << endl;
         }
         cout << "--------" << endl;
+        cout << "map:" << endl;
+        for (auto e : _cacheMap)
+        {
+            cout << e.first << "---" << e.second << endl;
+        }
+        cout << endl;
     }
 
 private:
@@ -79,18 +89,15 @@ private:
 int main(int argc, char **argv)
 {
     LRUCache cache(2 /* capacity */);
+    cache.put(2, 1);
     cache.put(1, 1);
-    cache.put(2, 2);
     cache.display();
-    cout << cache.get(1) << endl; // returns 1
-    cache.put(3, 3); // evicts key 2
+    cache.put(2, 3); // evicts key 2
     cache.display();
-    cout << cache.get(2) << endl;    // returns -1 (not found)
-    cache.put(4, 4); // evicts key 1
+    cache.put(4, 1); // evicts key 1
     cache.display();
     cout << cache.get(1) << endl;    // returns -1 (not found)
-    cout << cache.get(3) << endl;    // returns 3
-    cout << cache.get(4) << endl;    // returns 4
+    cout << cache.get(2) << endl;    // returns 3
 
     return 0;
 }
