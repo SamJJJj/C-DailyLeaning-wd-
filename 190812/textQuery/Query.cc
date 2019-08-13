@@ -33,16 +33,12 @@ QueryResult NotQuery::eval(const TextQuery & text) const
 
 	QueryResult::line_it beg = result.begin(), end = result.end();
 
-    // for each line in the input file, if that line is not in result,
-    // add that line number to ret_lines
 	vector<string>::size_type sz = result.getFile()->size();
     for (size_t n = 0; n != sz; ++n) {
-		// if we haven't processed all the lines in result
-		// check whether this line is present
 		if (beg == end || *beg != n) 
-			ret_lines->insert(n);  // if not in result, add this line 
+			ret_lines->insert(n);  
 		else if (beg != end) 
-			++beg; // otherwise get the next line number in result if there is one
+			++beg; 
 	}
 	return QueryResult(rep(), ret_lines, result.getFile());
 }
