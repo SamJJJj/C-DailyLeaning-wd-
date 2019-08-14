@@ -1,5 +1,7 @@
 #pragma once
 #include <vector>
+#include "Headquarter.h"
+#include "Warrior.h"
 
 namespace warcraft
 {
@@ -29,6 +31,17 @@ public:
             battle();
             headquarterReport();
         }
+    }
+    template <typename Iterator>
+    void setRedWarriorCreateOrder(Iterator beg, Iterator end)
+    {
+        _redHeadquarter->setWarriorCreateOrder(beg, end);
+    }
+
+    template <typename Iterator>
+    void setBlueWarriorCreateOrder(Iterator beg, Iterator end)
+    {
+        _blueHeadquarter->setWarriorCreateOrder(beg, end);
     }
 
 private:
