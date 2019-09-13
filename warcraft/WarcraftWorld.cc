@@ -2,4 +2,9 @@
 
 namespace warcraft{
     
+void WarcraftWorld::init()
+{
+    
+}
+
 }
